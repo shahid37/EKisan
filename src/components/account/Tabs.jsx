@@ -4,6 +4,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { AuthContext } from '@/providers/AuthProviser';
+import SellerInfo from './tabs/SellerInfo';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -35,10 +37,19 @@ CustomTabPanel.propTypes = {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
+  const { user } = React.useContext(AuthContext)
+  const isSeller = user.userType === "farmer" || user.userType === "corporate"
+  console.log(user)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const tabs = [
+    { name: "Orders", component: <> Orders</> },
+    { name: "Personal", component: <>Personal Detail</> },
+    { name: "Address", component: <>Address</> },
+  ]
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -50,25 +61,32 @@ export default function BasicTabs() {
           scrollButtons={true}
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="Seller" />
-          <Tab label="Orders" />
-          <Tab label="Personal" />
-          <Tab label="Address" />
+          {isSeller && <Tab label={"Seller"} />}
+          {
+            tabs.map((tab, index) => {
+              return <Tab key={index} label={tab.name} />
+            })
+
+          }
+
         </Tabs>
 
       </Box>
-      <CustomTabPanel value={value} index={0}>
-        Seller Info
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        Orders
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
-        Personal Detail
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
-        Address
-      </CustomTabPanel>
-    </Box>
+      {isSeller &&
+        <CustomTabPanel value={value} index={0}>
+          <SellerInfo />
+        </CustomTabPanel>}
+      {
+        tabs.map((tab, i) => {
+          var index = isSeller ? i + 1 : i
+          return (
+            <CustomTabPanel key={index} value={value} index={index}>
+              {tab.component}
+            </CustomTabPanel>
+          )
+        })
+
+      }
+    </Box >
   );
 }

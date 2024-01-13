@@ -1,11 +1,11 @@
 import { database } from "@/firebase";
 import { ref, set } from "firebase/database";
-const registerUser = ({ data, uid }) => {
+const registerUser = ({ data, user }) => {
     return new Promise(resolve => {
         try {
-            const userRef = ref(database, `users/${uid}`)
+            const userRef = ref(database, `users/${user.uid}`)
             set(userRef, {
-                ...data, timeStamp: Date.now()
+                ...data, phone: user.phone, timeStamp: Date.now()
             }).then(() => {
                 resolve(true)
             })

@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
                 setUser(null)
                 return;
             }
-            const userData = await fetchUser({ userId: auth.currentUser.uid })
+            const userData = await fetchUser({ user: auth.currentUser })
             setUser(userData)
 
         })

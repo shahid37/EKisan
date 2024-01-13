@@ -13,7 +13,7 @@ const AuthGuard = ({ children, allowAuth = true, allowRegistred = false }) => {
                     <Layout>
                         {children}
                     </Layout>
-                    )
+                )
             }
             else {
                 location.replace("/auth/register")
@@ -22,15 +22,18 @@ const AuthGuard = ({ children, allowAuth = true, allowRegistred = false }) => {
         }
         if (allowAuth && !allowRegistred) {
             if (!user?.name) {
-                location.replace("/auth")
-                return null
+                // location.replace("/auth")
+                // return null
+                return <Layout>
+                    {children}
+                </Layout>
             }
             else {
                 return (
                     <Layout>
                         {children}
                     </Layout>
-                    )
+                )
             }
         }
         if (allowAuth) {
@@ -43,13 +46,13 @@ const AuthGuard = ({ children, allowAuth = true, allowRegistred = false }) => {
                     <Layout>
                         {children}
                     </Layout>
-                    )
+                )
             }
         }
         //registerd
         //all arrguments are false
         else {
-            if (user) {
+            if (user?.name) {
                 location.replace("/")
                 return null
             }
@@ -58,7 +61,7 @@ const AuthGuard = ({ children, allowAuth = true, allowRegistred = false }) => {
                     <Layout>
                         {children}
                     </Layout>
-                    )
+                )
             }
         }
 

@@ -16,9 +16,9 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const registerUserStatus = await registerUser({ data: formData, uid: user.uid })
+            const registerUserStatus = await registerUser({ data: formData, user: user })
             if (registerUserStatus) {
-                location.replace("/profile")
+                location.replace("/account")
             }
         }
         catch (e) {
@@ -46,7 +46,7 @@ const Register = () => {
                     <div className="input-wrapper">
                         <label htmlFor="usertype">Who are  you?</label>
 
-                        <select id="usertype" required name="userType">
+                        <select onChange={handleFormChanges} id="usertype" required name="userType">
                             <option value="">User type - उपयोगकर्ता का प्रकार</option>
                             <option value="farmer"> Farmer - किसान</option>
                             <option value="corporate">

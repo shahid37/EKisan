@@ -537,6 +537,18 @@ h4.heading {
 .user-account .tab-panel {
   min-height: 70vh;
 }
+.user-account .seller-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.user-account .seller-info .heading {
+  font-size: 24px;
+  text-align: center;
+}
+.user-account .seller-info .heading svg {
+  color: #bc0000;
+}
 
 .auth .image {
   display: flex;
@@ -612,14 +624,15 @@ h4.heading {
   text-align: center;
   margin-bottom: 5px;
 }
-.registration-page label {
+
+form label {
   font-size: 14px;
 }
-.registration-page .input-wrapper {
+form .input-wrapper {
   margin-bottom: 14px;
 }
-.registration-page .input-box,
-.registration-page select {
+form .input-box,
+form select {
   border-radius: 10px;
   width: 100%;
   background: #f0f6f2;
@@ -627,19 +640,26 @@ h4.heading {
   margin-top: 5px;
   font-size: 14px;
 }
-.registration-page .input-box:focus,
-.registration-page select:focus {
+form .input-box:focus,
+form select:focus {
   outline: 1px solid #54b178;
 }
-.registration-page .button {
+form .button {
   width: 100%;
   border-radius: 10px;
 }
-.registration-page .checkbox-wrapper {
+form .checkbox-wrapper {
   display: flex;
   align-items: flex-start;
 }
-.registration-page .checkbox-wrapper input {
+form .checkbox-wrapper input {
   margin-right: 10px;
   margin-top: 5px;
+}
+form .selection-wrapper {
+  display: flex;
+  align-items: center;
+}
+form .selection-wrapper .selection-title {
+  width: 50%;
 }/*# sourceMappingURL=main.css.map */

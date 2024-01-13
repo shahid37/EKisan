@@ -644,6 +644,21 @@ h4.heading {
     .tab-panel {
         min-height: 70vh;
     }
+
+    .seller-info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .heading {
+            font-size: 24px;
+            text-align: center;
+
+            svg {
+                color: #bc0000;
+            }
+        }
+    }
 }
 
 .auth {
@@ -737,12 +752,17 @@ h4.heading {
         text-align: center;
         margin-bottom: 5px;
     }
-    label{
+}
+
+form {
+    label {
         font-size: 14px;
     }
+
     .input-wrapper {
         margin-bottom: 14px;
     }
+
     .input-box,
     select {
         border-radius: 10px;
@@ -751,20 +771,32 @@ h4.heading {
         padding: 10px 9px;
         margin-top: 5px;
         font-size: 14px;
+
         &:focus {
             outline: 1px solid $theme-color-light;
         }
     }
-    .button{
+
+    .button {
         width: 100%;
         border-radius: 10px;
     }
-    .checkbox-wrapper{
+
+    .checkbox-wrapper {
         display: flex;
         align-items: flex-start;
-        input{
+
+        input {
             margin-right: 10px;
             margin-top: 5px;
+        }
+    }
+    .selection-wrapper{
+        display: flex;
+        align-items: center;
+        .selection-title{
+        
+                width: 50%;
         }
     }
 }

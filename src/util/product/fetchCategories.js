@@ -3,13 +3,16 @@ import { database } from '@/firebase';
 import { incGST } from '../calc/gst';
 const fetchCategories = ({ sortType = "newest", limit = null, productList = null }) => {
     const itemsRef = ref(database, 'categories/');
-
+    console.log(sortType, limit, productList)
     return new Promise(resolve => {
         onValue(itemsRef, (snapshot) => {
             const snapVal = snapshot.val();
             var rawItemsList = [];
             for (const id in snapVal) {
                 rawItemsList.push({ ...snapVal[id], id });
+            }
+            if (sortType == "newest" && limit == null && productList == null) {
+                resolve(rawItemsList)
             }
             if (sortType == "productCount") {
                 rawItemsList = sortCategoryByProductCount(productList, rawItemsList)

@@ -1,13 +1,12 @@
 import { database } from '@/firebase';
 import { onValue, ref } from 'firebase/database';
-const fetchUser = ({ userId }) => {
-    console.log(userId)
+const fetchUser = ({ user }) => {
 
-    const userRef = ref(database, `users/${userId}`);
+    const userRef = ref(database, `users/${user.uid}`);
     return new Promise(resolve => {
         onValue(userRef, (snapshot) => {
             const snapVal = snapshot.val();
-            resolve({ ...snapVal, uid: userId })
+            resolve({ ...snapVal, uid: user.uid, phone: user.phoneNumber })
 
         });
     })
