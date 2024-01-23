@@ -3,7 +3,7 @@ import { AuthContext } from '@/providers/AuthProviser';
 import createFramerProfile from '@/util/create-profile/createFramerProfile';
 import fetchCategories from '@/util/product/fetchCategories';
 import fetchCrops from '@/util/product/fetchCrops';
-import { Delete } from '@mui/icons-material';
+import { Delete, Lock } from '@mui/icons-material';
 import Radio from '@mui/material/Radio';
 import { useContext, useEffect, useState } from 'react';
 import Link from "next/link"
