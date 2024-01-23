@@ -10,7 +10,7 @@ const Navbar = () => {
                     <MenuRoundedIcon />
                 </div>
                 <div className="logo">
-                    <Image width={35} height={35} alt='eKisan Darshan Logo' src={"/images/logo-transparent.png"} />
+                    <Image loading='lazy' width={35} height={35} alt='eKisan Darshan Logo' src={"/images/logo-transparent.png"} />
                     eKisan Darshan
                 </div>
                 <div className="translate">

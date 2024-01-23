@@ -45,7 +45,7 @@ export default function Home() {
                 <Link key={index} href={`/products/${slug(item.categorieName)}`}>
                   <div className="item">
                     <div className="image">
-                      <img src={item.coverImage} alt={english(item.categorieName)} />
+                      <img loading='lazy' src={item.coverImage} alt={english(item.categorieName)} />
                     </div>
                     <h5 className="name">
                       {english(item.categorieName)}

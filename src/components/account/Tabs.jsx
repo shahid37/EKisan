@@ -20,8 +20,8 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box className='tab-panel' sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box className='tab-panel' sx={{ p: 1 }}>
+          {children}
         </Box>
       )}
     </div>
@@ -39,7 +39,6 @@ export default function BasicTabs() {
   const [value, setValue] = React.useState(0);
   const { user } = React.useContext(AuthContext)
   const isSeller = user.userType === "farmer" || user.userType === "corporate"
-  console.log(user)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -64,7 +63,7 @@ export default function BasicTabs() {
           {isSeller && <Tab label={"Seller"} />}
           {
             tabs.map((tab, index) => {
-              return <Tab key={index} label={tab.name} />
+              return <Tab type='div' key={index} label={tab.name} />
             })
 
           }

@@ -28,7 +28,7 @@ const ProductPage = ({ params }) => {
       <Layout>
         <div className="product-page">
           <div className="product-image">
-            <img src={product.imgUrl} alt="" />
+            <img loading='lazy' src={product.imgUrl} alt="" />
           </div>
           <div className="item-wrap">
             <div className='left'>

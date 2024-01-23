@@ -589,7 +589,7 @@ h4.heading {
             .location {
                 display: flex;
                 align-items: center;
-
+                justify-content: center;
                 svg {
                     color: $theme-color-light;
                     font-size: 18px;
@@ -630,7 +630,7 @@ h4.heading {
             .location {
                 display: flex;
                 align-items: center;
-
+                justify-content: start;
                 svg {
                     color: $theme-color-light;
                     font-size: 18px;
@@ -754,6 +754,14 @@ h4.heading {
     }
 }
 
+.create-profile {
+    .farm {
+        .heading {
+            font-size: 20px;
+        }
+    }
+}
+
 form {
     label {
         font-size: 14px;
@@ -791,12 +799,14 @@ form {
             margin-top: 5px;
         }
     }
-    .selection-wrapper{
+
+    .selection-wrapper {
         display: flex;
         align-items: center;
-        .selection-title{
-        
-                width: 50%;
+
+        .selection-title {
+
+            width: 50%;
         }
     }
 }

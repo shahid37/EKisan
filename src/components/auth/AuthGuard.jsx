@@ -8,16 +8,21 @@ const AuthGuard = ({ children, allowAuth = true, allowRegistred = false }) => {
         return null
     } else {
         if (allowAuth && allowRegistred) {
-            if (user?.name) {
-                return (
-                    <Layout>
-                        {children}
-                    </Layout>
-                )
-            }
-            else {
-                location.replace("/auth/register")
+            if (!user) {
+                location.replace("/auth/")
                 return null
+            } else {
+                if (user?.name) {
+                    return (
+                        <Layout>
+                            {children}
+                        </Layout>
+                    )
+                }
+                else {
+                    location.replace("/auth/register")
+                    return null
+                }
             }
         }
         if (allowAuth && !allowRegistred) {

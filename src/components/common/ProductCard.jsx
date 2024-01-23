@@ -10,7 +10,7 @@ const ProductCard = ({ item }) => {
         <div className="product-card">
             <div className='card'>
                 <Link href={`/products/${slug(item.category)}/${slug(item.name)}/${item.id}`}>
-                    <img src={item.imgUrl} alt={english(item.name)} />
+                    <img loading='lazy' src={item.imgUrl} alt={english(item.name)} />
                 </Link>
                 <div className="detail">
                     <div className="name heading"><span className="name">{english(item.name)}</span> </div>

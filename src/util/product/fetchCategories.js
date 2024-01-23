@@ -3,7 +3,7 @@ import { database } from '@/firebase';
 import { incGST } from '../calc/gst';
 const fetchCategories = ({ sortType = "newest", limit = null, productList = null }) => {
     const itemsRef = ref(database, 'categories/');
-    console.log(sortType, limit, productList)
+
     return new Promise(resolve => {
         onValue(itemsRef, (snapshot) => {
             const snapVal = snapshot.val();

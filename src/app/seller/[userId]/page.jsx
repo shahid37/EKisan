@@ -30,9 +30,9 @@ const SellerProfile = ({ params }) => {
                         <div className="image">
                             {
                                 seller.userType == "farmer" ?
-                                    <img src="/images/farmer.png" alt={"Farmer"} />
+                                    <img loading='lazy' src="/images/farmer.png" alt={"Farmer"} />
                                     :
-                                    <img src="/images/corporate.svg" alt={"Corporate"} />
+                                    <img loading='lazy' src="/images/corporate.svg" alt={"Corporate"} />
 
 
                             }

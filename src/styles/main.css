@@ -496,6 +496,7 @@ h4.heading {
 .seller-profile .detail .about .location {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .seller-profile .detail .about .location svg {
   color: #54b178;
@@ -528,6 +529,7 @@ h4.heading {
 .user-account .detail .about .location {
   display: flex;
   align-items: center;
+  justify-content: start;
 }
 .user-account .detail .about .location svg {
   color: #54b178;
@@ -623,6 +625,10 @@ h4.heading {
   font-size: 22px;
   text-align: center;
   margin-bottom: 5px;
+}
+
+.create-profile .farm .heading {
+  font-size: 20px;
 }
 
 form label {

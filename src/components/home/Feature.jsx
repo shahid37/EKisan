@@ -57,7 +57,7 @@ const Feature = () => {
             <div style={{ backgroundColor: currentSlide.color }} className="item">
                 <div className="left">
                     <div className="img" style={{ backgroundImage: `url(${currentSlide.img})` }}>
-                        <img src='/images/slider/fruit.png' />
+                        <img loading='lazy' src='/images/slider/fruit.png' />
                     </div>
                 </div>
                 <div className="right">
@@ -74,7 +74,7 @@ const Feature = () => {
                     </Link>
                 </div>
                 <div className="logo">
-                    <Image alt='eKisan Darshan Logo' src='/images/ekisan-darshan-logo.jpeg' width={30} height={30} />
+                    <Image loading='lazy' alt='eKisan Darshan Logo' src='/images/ekisan-darshan-logo.jpeg' width={30} height={30} />
                 </div>
             </div>
         </div>

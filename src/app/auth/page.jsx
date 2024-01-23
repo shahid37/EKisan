@@ -15,7 +15,7 @@ function Auth() {
       <div className="container auth">
 
         <div className="image">
-          <img src="/images/loginimg.webp" alt="" />
+          <img loading='lazy' src="/images/loginimg.webp" alt="" />
         </div>
 
         <div className="message heading">
