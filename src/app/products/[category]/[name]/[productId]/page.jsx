@@ -11,6 +11,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import filterProduct from '@/util/filter/filterProduct';
 import fetchProducts from '@/util/product/fetchProducts';
 import ProductCard from '@/components/common/ProductCard';
+import Head from 'next/head';
 const ProductPage = ({ params }) => {
   const [product, setProduct] = useState(null)
   const [products, setProducts] = useState([])
@@ -26,6 +27,13 @@ const ProductPage = ({ params }) => {
   if (product) {
     return (
       <Layout>
+        <Head>
+          <title>{product.name} | eKisanDarshan</title>
+          <meta name="description" content={`Buy ${product.name} from eKisanDarshan`} />
+          <meta name="og:image" content={product.imgUrl} />
+          <meta property="og:image:width" content="500" />
+          <meta property="og:image:height" content="500" />
+        </Head>
         <div className="product-page">
           <div className="product-image">
             <img loading='lazy' src={product.imgUrl} alt="" />
