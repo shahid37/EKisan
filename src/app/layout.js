@@ -4,10 +4,10 @@ import '@/styles/main.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'eKisan Darshan',
-  description: 'eKisan Darshan, Our website helps farmers wholesellers and daily consumers to buy and sell their products',
-}
+// export const metadata = {
+//   title: 'eKisan Darshan',
+//   description: 'eKisan Darshan, Our website helps farmers wholesellers and daily consumers to buy and sell their products',
+// }
 
 export default function RootLayout({ children }) {
   return (
