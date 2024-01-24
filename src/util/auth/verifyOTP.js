@@ -4,8 +4,8 @@ const verifyOtp = (otp) => {
     var confirmationResult = window.confirmationResult
     confirmationResult.confirm(otp).then((result) => {
         var uid = result.user.uid
-        Swal.fire("Login Successful", "Thank you for login on eKisandarshan.in", 'success').then(async() => {
-            const userData = await fetchUser({ userId: uid });
+        Swal.fire("Login Successful", "Thank you for login on eKisandarshan.in", 'success').then(async () => {
+            const userData = await fetchUser({ user: result.user });
             if (userData === null) {
                 window.location.replace("/register")
             }
