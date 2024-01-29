@@ -1,17 +1,24 @@
+
 "use client"
 import { AuthContext } from '@/providers/AuthProviser';
 import createFramerProfile from '@/util/create-profile/createFramerProfile';
 import fetchCategories from '@/util/product/fetchCategories';
 import fetchCrops from '@/util/product/fetchCrops';
 import { Delete, Lock } from '@mui/icons-material';
+import Link from "next/link";
 import Radio from '@mui/material/Radio';
+
 import { useContext, useEffect, useState } from 'react';
 import Link from "next/link"
 const Farmer = () => {
     const { user } = useContext(AuthContext)
     const [crops, setCrops] = useState([]);
     const [categories, setCategories] = useState([])
-    const [formData, setFormData] = useState([])
+    const [formData, setFormData] = useState(
+        // user.farmerData 
+        []
+    )
+    console.log(user)
     const [farms, setFarms] = useState([{
         cropType: "",
         cropName: "",
@@ -58,7 +65,7 @@ const Farmer = () => {
     }
     if (user.farmerData) {
         return (
-            <div className="px-2 create-profile">
+            <div className="create-profile">
                 <form onSubmit={handleFormSubmmit}>
 
                     <div id="wrapper">
@@ -153,7 +160,7 @@ const Farmer = () => {
 }
 const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farms }) => {
     return (
-        <div className="farm mt-10">
+        <div className="farm mt-3">
             <h5 className='heading'>Farm {index + 1} {index > 0 && <Delete onClick={deleteFarm(index)} color='error' />}</h5>
             <div className="input-wrapper">
                 <label htmlFor={`crop-type`}>What kind of crop you grow</label>

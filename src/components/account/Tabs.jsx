@@ -49,7 +49,6 @@ export default function BasicTabs() {
     { name: "Personal", component: <>Personal Detail</> },
     { name: "Address", component: <>Address</> },
   ]
-
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

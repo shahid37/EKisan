@@ -16,7 +16,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const registerUserStatus = await registerUser({ data: formData, user: user }) ` `
+            const registerUserStatus = await registerUser({ data: formData, user: user })
             if (registerUserStatus) {
                 location.replace("/account")
             }

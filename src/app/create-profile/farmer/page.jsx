@@ -18,7 +18,11 @@ const Farmer = () => {
         cropName: "",
         dateOfSowing: "",
         fieldArea: "",
-        fieldSizeUnit: ""
+        fieldSizeUnit: "",
+        irrigation: "",
+        storage: "",
+        chemicalFertilizers: "",
+        soilTested: "",
     }])
     useEffect(() => {
         const fetchData = async () => {
@@ -33,13 +37,7 @@ const Farmer = () => {
         farmArr[index][e.target.name] = e.target.value
         setFarms(farmArr)
     }
-    const controlProps = ({ name, value }) => ({
-        checked: formData[name] === value,
-        onChange: handleFormChanges,
-        value: value,
-        name: name,
-        size: "small"
-    });
+
     let name, value;
     const handleFormChanges = (e) => {
         name = e.target.name
@@ -55,6 +53,8 @@ const Farmer = () => {
     const handleFormSubmmit = (e) => {
         e.preventDefault();
         createFramerProfile({ data: { ...formData, farms: farms }, user: user })
+        console.log({ data: { ...formData, farms: farms }, user: user })
+
 
     }
     return (
@@ -79,55 +79,7 @@ const Farmer = () => {
                     }
                     <button onClick={() => { setFarms([...farms, {}]) }} type='button' className="button">Add More</button>
 
-                    <div className='selection-wrapper'>
-                        <div className='selection-title'>
-                            <span className="en">Do you have....</span>
-                        </div>
-                        <div className='radio-wrap text-center flex'>
-                            <div style={{ width: 38 }}>Yes</div>
-                            <div style={{ width: 38 }}>No</div>
-                        </div>
-                    </div>
 
-                    <div className='selection-wrapper'>
-                        <div className='selection-title'>
-                            <span className="en">Irrigation Facility?</span>
-                        </div>
-                        <div className='radio-wrap'>
-                            <Radio color='primary' {...controlProps({ name: "irrigation", value: "yes" })} />
-                            <Radio color='primary' {...controlProps({ name: "irrigation", value: "no" })} />
-                        </div>
-                    </div>
-
-                    <div className='selection-wrapper'>
-                        <div className='selection-title'>
-                            <span className="en">Storage Facility?</span>
-                        </div>
-                        <div className='radio-wrap'>
-                            <Radio color='primary' {...controlProps({ name: "storage", value: "yes" })} />
-                            <Radio color='primary' {...controlProps({ name: "storage", value: "no" })} />
-                        </div>
-                    </div>
-
-                    <div className='selection-wrapper'>
-                        <div className='selection-title'>
-                            <span className="en">Chemical fertilizers?</span>
-                        </div>
-                        <div className='radio-wrap'>
-                            <Radio color='primary' {...controlProps({ name: "chemicalFertilizers", value: "yes" })} />
-                            <Radio color='primary' {...controlProps({ name: "chemicalFertilizers", value: "no" })} />
-                        </div>
-                    </div>
-
-                    <div className='selection-wrapper'>
-                        <div className='selection-title'>
-                            <span className="en">Soil tested?</span>
-                        </div>
-                        <div className='radio-wrap'>
-                            <Radio color='primary' {...controlProps({ name: "soilTested", value: "yes" })} />
-                            <Radio color='primary' {...controlProps({ name: "soilTested", value: "no" })} />
-                        </div>
-                    </div>
                     {/* <StateDisctrict formData={formData} handleFormChanges={handleFormChanges} /> */}
                     <br />
                     <button type='submit' className="button">Create Profile</button>
@@ -140,6 +92,13 @@ const Farmer = () => {
     )
 }
 const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farms }) => {
+    const controlProps = ({ name, value }) => ({
+        checked: farms[index][name] === value,
+        onChange: handleFarmChange,
+        value: value,
+        name: name,
+        size: "small"
+    });
     return (
         <div className="farm mt-10">
             <h5 className='heading'>Farm {index + 1} {index > 0 && <Delete onClick={deleteFarm(index)} color='error' />}</h5>
@@ -237,6 +196,55 @@ const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farm
                             <option value="katta">Katta</option>
                         </select>
                     </div>
+                </div>
+            </div>
+            <div className='selection-wrapper'>
+                <div className='selection-title'>
+                    <span className="en">....</span>
+                </div>
+                <div className='radio-wrap text-center flex'>
+                    <div style={{ width: 38 }}>Yes</div>
+                    <div style={{ width: 38 }}>No</div>
+                </div>
+            </div>
+
+            <div className='selection-wrapper'>
+                <div className='selection-title'>
+                    <span className="en">Irrigation Facility?</span>
+                </div>
+                <div className='radio-wrap'>
+                    <Radio color='primary' {...controlProps({ name: "irrigation", value: "yes" })} />
+                    <Radio color='primary' {...controlProps({ name: "irrigation", value: "no" })} />
+                </div>
+            </div>
+
+            <div className='selection-wrapper'>
+                <div className='selection-title'>
+                    <span className="en">Storage Facility?</span>
+                </div>
+                <div className='radio-wrap'>
+                    <Radio color='primary' {...controlProps({ name: "storage", value: "yes" })} />
+                    <Radio color='primary' {...controlProps({ name: "storage", value: "no" })} />
+                </div>
+            </div>
+
+            <div className='selection-wrapper'>
+                <div className='selection-title'>
+                    <span className="en">Chemical fertilizers?</span>
+                </div>
+                <div className='radio-wrap'>
+                    <Radio color='primary' {...controlProps({ name: "chemicalFertilizers", value: "yes" })} />
+                    <Radio color='primary' {...controlProps({ name: "chemicalFertilizers", value: "no" })} />
+                </div>
+            </div>
+
+            <div className='selection-wrapper'>
+                <div className='selection-title'>
+                    <span className="en">Soil tested?</span>
+                </div>
+                <div className='radio-wrap'>
+                    <Radio color='primary' {...controlProps({ name: "soilTested", value: "yes" })} />
+                    <Radio color='primary' {...controlProps({ name: "soilTested", value: "no" })} />
                 </div>
             </div>
         </div>
