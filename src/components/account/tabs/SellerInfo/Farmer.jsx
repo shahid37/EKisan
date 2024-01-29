@@ -7,9 +7,7 @@ import fetchCrops from '@/util/product/fetchCrops';
 import { Delete, Lock } from '@mui/icons-material';
 import Link from "next/link";
 import Radio from '@mui/material/Radio';
-
 import { useContext, useEffect, useState } from 'react';
-import Link from "next/link"
 const Farmer = () => {
     const { user } = useContext(AuthContext)
     const [crops, setCrops] = useState([]);
