@@ -12,6 +12,7 @@ import filterProduct from '@/util/filter/filterProduct';
 import fetchProducts from '@/util/product/fetchProducts';
 import ProductCard from '@/components/common/ProductCard';
 import Head from 'next/head';
+import slug from '@/util/name/slug';
 const ProductPage = ({ params }) => {
   const [product, setProduct] = useState(null)
   const [products, setProducts] = useState([])
@@ -55,11 +56,11 @@ const ProductPage = ({ params }) => {
             </div>
           </div>
           <div className="location">
-            <LocationOnOutlined />{productLocation({ product: product, short: false })}
+            <LocationOnOutlined />{productLocation({ product: product, short: false, linked: true })}
           </div>
           <div className="seller">
             <div className="seller-name">
-              <AccountCircleOutlinedIcon /> <Link href={`/seller/${product.sellerUID}`}>{product.sellerName}</Link>
+              <AccountCircleOutlinedIcon /> <Link href={`/seller/${slug(product.sellerName)}/${product.sellerUID}`}>{product.sellerName}</Link>
             </div>
             <div className="seller-type">
               {product.sellerType === "farmer" ? <>🚜 Farmer</> : <>🏢 Comany/Organisation </>}

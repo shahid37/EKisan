@@ -65,7 +65,6 @@ export default function Category({ params }) {
                     </button>
                 </div>
             </div>
-            <Feature />
             <div className="top-categories">
                 <h4 className="heading">
                     Top Categories

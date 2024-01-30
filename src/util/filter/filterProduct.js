@@ -1,6 +1,15 @@
 
 
-const filterProduct = ({ products = [], filterBy = "State", category, limit = null, except = null, sellerUID = null }) => {
+const filterProduct = ({
+    products = [],
+    filterBy = null,
+    category, limit = null,
+    except = null,
+    sellerUID = null,
+    state = null,
+    district = null,
+    block = null,
+}) => {
     limit = limit ? limit : products.length - 1
     var localProducts = products;
     if (category) {
@@ -9,6 +18,15 @@ const filterProduct = ({ products = [], filterBy = "State", category, limit = nu
     }
     if (filterBy === "seller") {
         localProducts = localProducts.filter(item => item.sellerUID === sellerUID)
+    }
+    if (filterBy === "state") {
+        localProducts = localProducts.filter(item => item.state.toLowerCase() === state.toLowerCase())
+    }
+    if (filterBy === "district") {
+        localProducts = localProducts.filter(item => item.district.toLowerCase() === district.toLowerCase())
+    }
+    if (filterBy === "block") {
+        localProducts = localProducts.filter(item => item.block?.toLowerCase() === block.toLowerCase())
     }
     if (except) {
         localProducts = localProducts.filter(item => item.id != except)

@@ -1,0 +1,14 @@
+@media (min-width: 700px) {
+  .contact-us {
+    display: flex;
+    justify-content: center;
+  }
+  .contact-us .form {
+    min-width: 700px;
+  }
+}
+@media (min-width: 560px) {
+  .bottom-nav {
+    display: none;
+  }
+}/*# sourceMappingURL=responsive.css.map */

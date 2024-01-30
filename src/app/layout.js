@@ -1,9 +1,8 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import '@/styles/main.css'
-
+import "@/styles/responsive.css"
 const inter = Inter({ subsets: ['latin'] })
-
 // export const metadata = {
 //   title: 'eKisan Darshan',
 //   description: 'eKisan Darshan, Our website helps farmers wholesellers and daily consumers to buy and sell their products',
