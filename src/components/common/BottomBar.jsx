@@ -1,13 +1,15 @@
-import React from 'react'
-import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import { AuthContext } from '@/providers/AuthProviser';
+import isRegisterdSeller from '@/util/seller/isRegisterdSeller';
+import { Store } from '@mui/icons-material';
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
 import { useRouter } from 'next/navigation';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/firebase';
+import { useContext } from 'react';
 const BottomBar = () => {
   const navigate = useRouter();
+  const { user } = useContext(AuthContext)
   const push = (link) => {
     return () => {
       navigate.push(link)
@@ -28,13 +30,21 @@ const BottomBar = () => {
           </div>
           <div className="name">You</div>
         </div>
+        {
+          isRegisterdSeller(user) && <div onClick={push("/store")} className="item">
+            <div className="icon">
+              <Store />
+            </div>
+            <div className="name">Store</div>
+          </div>
+        }
         <div className="item">
           <div className="icon">
             <ShoppingCart />
           </div>
           <div className="name">Cart</div>
         </div>
-        <div onClick={() => signOut(auth)} className="item">
+        <div onClick={push("/contact")} className="item">
           <div className="icon">
             <CallRoundedIcon />
           </div>

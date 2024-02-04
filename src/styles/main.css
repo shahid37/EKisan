@@ -45,6 +45,18 @@
   color: #54b178;
   border: 1px solid #54b178;
 }
+.button.button-red {
+  background-color: #8B0202;
+  border-color: #8B0202;
+}
+.button.button-green {
+  background-color: #0080ff;
+  border-color: #0080ff;
+}
+.button.button-orange {
+  background-color: #E8A221;
+  border-color: #E8A221;
+}
 
 .image-slider .item {
   display: flex;
@@ -336,6 +348,7 @@ h4.heading {
   align-items: center;
   color: #54b178;
   font-weight: bold;
+  flex: 1;
 }
 .bottom-nav .wrap .item .icon {
   display: flex;
@@ -629,6 +642,31 @@ h4.heading {
 
 .create-profile .farm .heading {
   font-size: 20px;
+}
+
+.cart h3.heading {
+  font-size: 25px;
+}
+
+.store h3 {
+  font-size: 25px;
+}
+.store .quick-access-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.store .quick-access-btns .button {
+  width: 47%;
+  aspect-ratio: 1/1;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+}
+.store .quick-access-btns .button svg {
+  font-size: 50px;
 }
 
 form label {

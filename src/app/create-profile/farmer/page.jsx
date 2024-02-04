@@ -1,4 +1,6 @@
 "use client"
+import Select from '@/components/forms/Select';
+import Input from '@/components/forms/input';
 import { AuthContext } from '@/providers/AuthProviser';
 import createFramerProfile from '@/util/create-profile/createFramerProfile';
 import fetchCategories from '@/util/product/fetchCategories';
@@ -37,13 +39,6 @@ const Farmer = () => {
         farmArr[index][e.target.name] = e.target.value
         setFarms(farmArr)
     }
-
-    let name, value;
-    const handleFormChanges = (e) => {
-        name = e.target.name
-        value = e.target.value
-        setFormData({ ...formData, [name]: value })
-    }
     const deleteFarm = (index) => {
         return () => {
             var farmsArr = farms.filter((item, i) => i !== index)
@@ -53,9 +48,6 @@ const Farmer = () => {
     const handleFormSubmmit = (e) => {
         e.preventDefault();
         createFramerProfile({ data: { ...formData, farms: farms }, user: user })
-        console.log({ data: { ...formData, farms: farms }, user: user })
-
-
     }
     return (
         <div className="px-2 create-profile">
@@ -94,7 +86,7 @@ const Farmer = () => {
 const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farms }) => {
     const controlProps = ({ name, value }) => ({
         checked: farms[index][name] === value,
-        onChange: handleFarmChange,
+        onChange: (e) => handleFarmChange(e, index),
         value: value,
         name: name,
         size: "small"
@@ -102,47 +94,46 @@ const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farm
     return (
         <div className="farm mt-10">
             <h5 className='heading'>Farm {index + 1} {index > 0 && <Delete onClick={deleteFarm(index)} color='error' />}</h5>
-            <div className="input-wrapper">
-                <label htmlFor={`crop-type`}>What kind of crop you grow</label>
-                <select
-                    id={`crop-type`}
-                    required
-                    value={farms[index].cropType}
-                    name={`cropType`}
-                    onChange={(e) => { handleFarmChange(e, index) }}
-                >
 
-                    <option value="">Crop Category - फसल का प्रकार</option>
-                    {
-                        categories.map((item, index) => {
-                            if (
-                                item.allowedTo === "all"
-                            ) {
-                                return <option key={index} value={item.categorieName}>{item.categorieName}</option>
-                            }
-                        })
-                    }
-                </select>
-            </div>
-            <div className="input-wrapper">
-                <label htmlFor={`crop-name`}>Crop you grow in this Farm</label>
-                <select name={`cropName`}
-                    required
-                    value={farms[index].cropName}
-                    id={`crop-name`}
-                    disabled={farms[index].cropType === undefined || farms[index].cropType === "" ? true : false}
-                    onChange={(e) => { handleFarmChange(e, index) }}>
-                    <option value="">Which Crop you grow</option>
-                    {
-                        crops.map((item, cropIndex) => {
-                            if (item.category === farms[index].cropType) {
-                                return <option key={cropIndex} value={item.cropName}>{item.cropName}</option>
-                            }
-                            return null
-                        })
-                    }
-                </select>
-            </div>
+            <Select
+                id={`crop-type`}
+                label="What kind of crop you grow"
+                required
+                value={farms[index].cropType}
+                name={`cropType`}
+                onChange={(e) => { handleFarmChange(e, index) }}
+            >
+
+                <option value="">Crop Category - फसल का प्रकार</option>
+                {
+                    categories.map((item, index) => {
+                        if (
+                            item.allowedTo === "all"
+                        ) {
+                            return <option key={index} value={item.categorieName}>{item.categorieName}</option>
+                        }
+                    })
+                }
+            </Select>
+
+            <Select name={`cropName`}
+                required
+                value={farms[index].cropName}
+                id={`crop-name`}
+                label={"Crop you grow in this Farm"}
+                disabled={farms[index].cropType === undefined || farms[index].cropType === "" ? true : false}
+                onChange={(e) => { handleFarmChange(e, index) }}>
+                <option value="">Which Crop you grow</option>
+                {
+                    crops.map((item, cropIndex) => {
+                        if (item.category === farms[index].cropType) {
+                            return <option key={cropIndex} value={item.cropName}>{item.cropName}</option>
+                        }
+                        return null
+                    })
+                }
+            </Select>
+
             <div className="input-wrapper">
                 <label htmlFor={`date`}>
                     Date of Sowing
@@ -159,45 +150,36 @@ const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farm
                     name={`dateOfSowing`}
                     placeholder="Date of sowing" />
             </div>
-            <div className="row">
-                <div className="col-lg-9">
-                    <div className="input-wrapper">
-                        <label htmlFor={`fieldArea`}>
-                            Area of this farm
-                        </label>
-                        <input
-                            required
-                            value={farms[index].fieldArea}
-                            onChange={(e) => { handleFarmChange(e, index) }}
-                            className='input-box'
-                            type="number"
-                            name={`fieldArea`}
-                            id={`fieldArea`}
-                            placeholder="Area of your farm" />
-                    </div>
-                </div>
-                <div className="col-lg-3">
-                    <div className="input-wrapper">
-                        <label htmlFor={`fieldSizeUnit`}>
-                            Unit of Messurement
-                        </label>
-                        <select name={`fieldSizeUnit`}
-                            disabled={farms[index].cropType === undefined || farms[index].cropType === "" ? true : false}
-                            onChange={(e) => { handleFarmChange(e, index) }}
-                            id={`fieldSizeUnit`}
-                            required
-                            value={farms[index].fieldSizeUnit}
-                        >
-                            <option value="">Unit of Messurement line acre, hactor</option>
-                            Hectare/acre/Katta
-                            <option value="hectare">Hectare</option>
-                            <option value="acre">Acre</option>
-                            <option value="bigha">Bigha</option>
-                            <option value="katta">Katta</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+
+            <Input
+                required
+                value={farms[index].fieldArea}
+                onChange={(e) => { handleFarmChange(e, index) }}
+                className='input-box'
+                type="number"
+                label={"Area of this farm"}
+                name={`fieldArea`}
+                id={`fieldArea`}
+                placeholder="Area of your farm" />
+
+
+
+            <Select name={`fieldSizeUnit`}
+                disabled={farms[index].cropType === undefined || farms[index].cropType === "" ? true : false}
+                onChange={(e) => { handleFarmChange(e, index) }}
+                id={`fieldSizeUnit`}
+                required
+                label={"Unit of Messurement"}
+                value={farms[index].fieldSizeUnit}
+            >
+                <option value="">Unit of Messurement line acre, hactor</option>
+                Hectare/acre/Katta
+                <option value="hectare">Hectare</option>
+                <option value="acre">Acre</option>
+                <option value="bigha">Bigha</option>
+                <option value="katta">Katta</option>
+            </Select>
+
             <div className='selection-wrapper'>
                 <div className='selection-title'>
                     <span className="en">....</span>
@@ -247,7 +229,7 @@ const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farm
                     <Radio color='primary' {...controlProps({ name: "soilTested", value: "no" })} />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 export default Farmer

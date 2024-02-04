@@ -51,11 +51,23 @@ body {}
     font-weight: bold;
     font-family: $rajdhani;
     font-size: 20px;
-
+    
     &.outlined {
         background-color: transparent;
         color: $theme-color-light;
         border: 1px solid $theme-color-light;
+    }
+    &.button-red {
+        background-color: #8B0202;
+        border-color: #8B0202;
+    }
+    &.button-green {
+        background-color: #0080ff;
+        border-color: #0080ff;
+    }
+    &.button-orange {
+        background-color: #E8A221;
+        border-color: #E8A221;
     }
 }
 
@@ -389,6 +401,7 @@ h4.heading {
             align-items: center;
             color: $theme-color-light;
             font-weight: bold;
+            flex: 1;
 
             .icon {
                 display: flex;
@@ -533,6 +546,7 @@ h4.heading {
         font-size: 18px;
 
     }
+
     .seller {
 
         svg {
@@ -761,6 +775,39 @@ h4.heading {
     .farm {
         .heading {
             font-size: 20px;
+        }
+    }
+}
+
+.cart {
+    h3.heading {
+        font-size: 25px;
+    }
+}
+
+.store {
+    h3 {
+
+        font-size: 25px;
+    }
+
+    .quick-access-btns {
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .button {
+            width: 47%;
+            aspect-ratio: 1/1;
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            svg {
+                font-size: 50px;
+            }
         }
     }
 }

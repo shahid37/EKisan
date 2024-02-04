@@ -1,6 +1,7 @@
 "use client"
 import Layout from '@/components/common/Layout';
 import ProductCard from '@/components/common/ProductCard';
+import SearchBar from '@/components/common/SearchBar';
 import Feature from '@/components/home/Feature';
 import filterProduct from '@/util/filter/filterProduct';
 import english from '@/util/name/english';
@@ -25,14 +26,7 @@ export default function Home() {
   }, [])
   return (
     <Layout>
-      <div className="search-bar">
-        <input placeholder='Search Item, Seller, Category' type="text" />
-        <div className="search-btn">
-          <button>
-            <SearchRoundedIcon />
-          </button>
-        </div>
-      </div>
+      <SearchBar />
       <Feature />
       <div className="top-categories">
         <h4 className="heading">

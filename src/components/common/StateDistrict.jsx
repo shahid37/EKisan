@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { IndianDistrict, IndianStates, Blocks } from '@/util/data/geographical-data'
+import Select from '@/components/forms/Select'
 function StateDisctrict(props) {
     const { handleFormChanges } = props
     const [optionBlock, setOptionBlock] = useState(undefined)
@@ -23,57 +24,53 @@ function StateDisctrict(props) {
 
     return (
         <>
-            <div className='input-wrapper'>
-                <label htmlFor="inputState">State</label>
-                <select required name="state" label="State" onChange={changeState} id="inputState">
-                    <option value="">Select a State - राज्य चुनें</option>
-                    {
-                        IndianStates.map((item, index) => {
-                            return (
-                                <option key={index} value={item}>{item}</option>
-                            )
-                        })
-                    }
-                </select>
-
-            </div>
-            <div className='input-wrapper'>
-                <label htmlFor="inputDistrict">District</label>
+            <Select required name="state" label="Select a State" onChange={changeState} id="inputState">
+                <option value="">Select a State - राज्य चुनें</option>
                 {
-                    props.formData.state === undefined || optionDistrict === undefined ?
-                        <select required disabled name="district" id="inputDistrict">
-                            <option value="">Select a State First</option>
-
-                        </select>
-                        : <select required value={props.formData.state} onChange={districtChange} name="district" label="Select a District">
-                            {
-                                optionDistrict.map((item, i) => {
-                                    return <option key={i} value={item}>{item}</option>
-                                })
-                            }
-                        </select>
+                    IndianStates.map((item, index) => {
+                        return (
+                            <option key={index} value={item}>{item}</option>
+                        )
+                    })
                 }
-            </div>
+            </Select>
 
-            <div className='input-wrapper'>
-                <label htmlFor="inputBlocks">Block/City</label>
-                {
-                    props.formData.district === undefined || optionBlock === undefined ?
-                        <select disabled name="block"
-                            id="inputBlocks">
-                            <option value="">Select District First</option>
-                        </select>
-                        : <select onChange={handleFormChanges} required name="block"
 
-                            label="Select Block" id="inputBlocks">
-                            {
-                                optionBlock.map((item, i) => {
-                                    return <option key={i} value={item}>{item}</option>
-                                })
-                            }
-                        </select>
-                }
-            </div>
+            {
+                props.formData.state === undefined || optionDistrict === undefined ?
+                    <Select required disabled name="district" label="Select a District" id="inputDistrict">
+                        <option value="">Select a State First</option>
+
+                    </Select>
+                    : <Select required value={props.formData.state} onChange={districtChange} name="district" label="Select a District">
+                        {
+                            optionDistrict.map((item, i) => {
+                                return <option key={i} value={item}>{item}</option>
+                            })
+                        }
+                    </Select>
+            }
+
+
+            {
+                props.formData.district === undefined || optionBlock === undefined ?
+                    <Select disabled name="block"
+                        id="inputBlocks"
+                        label="Select a Block"
+                    >
+                        <option value="">Select District First</option>
+                    </Select>
+                    : <Select onChange={handleFormChanges} required name="block"
+
+                        label="Select a Block" id="inputBlocks">
+                        {
+                            optionBlock.map((item, i) => {
+                                return <option key={i} value={item}>{item}</option>
+                            })
+                        }
+                    </Select>
+            }
+
         </>
     )
 }

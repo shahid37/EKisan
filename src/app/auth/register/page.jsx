@@ -1,5 +1,7 @@
 "use client"
 import StateDisctrict from '@/components/common/StateDistrict'
+import Select from '@/components/forms/Select'
+import Input from '@/components/forms/input'
 import { AuthContext } from '@/providers/AuthProviser'
 import registerUser from '@/util/user/registerUser'
 import { useContext, useState } from 'react'
@@ -31,42 +33,36 @@ const Register = () => {
             <h3 className='heading'>Registration</h3>
             <form onSubmit={handleSubmit}>
                 <div className="Form-container">
-                    <div className="input-wrapper">
-                        <label htmlFor="name">Name</label>
-                        <input
-                            onChange={handleFormChanges}
-                            className="input-box"
-                            required
-                            type="text"
-                            name="name"
-                            id="name"
-                            placeholder="eg: Ramesh"
-                        />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="usertype">Who are  you?</label>
 
-                        <select onChange={handleFormChanges} id="usertype" required name="userType">
-                            <option value="">User type - उपयोगकर्ता का प्रकार</option>
-                            <option value="farmer"> Farmer - किसान</option>
-                            <option value="corporate">
-                                Company/Organisation - कंपनी/संस्थान
-                            </option>
-                            <option value="consumer">I want to Buy (Consumer)</option>
-                        </select>
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="email">Email</label>
+                    <Input
+                        onChange={handleFormChanges}
+                        className="input-box"
+                        required
+                        type="text"
+                        name="name"
+                        label={"Name"}
+                        id="name"
+                        placeholder="eg: Ramesh"
+                    />
+                    <Select onChange={handleFormChanges} label={"Who are  you?"} id="usertype" required name="userType">
+                        <option value="">User type - उपयोगकर्ता का प्रकार</option>
+                        <option value="farmer"> Farmer - किसान</option>
+                        <option value="corporate">
+                            Company/Organisation - कंपनी/संस्थान
+                        </option>
+                        <option value="consumer">I want to Buy (Consumer)</option>
+                    </Select>
 
-                        <input
-                            onChange={handleFormChanges}
-                            id="email"
-                            className="input-box"
-                            type="email"
-                            name="email"
-                            placeholder="Email (optional) - ईमेल (वैकल्पिक)"
-                        />
-                    </div>
+                    <Input
+                        onChange={handleFormChanges}
+                        id="email"
+                        className="input-box"
+                        type="email"
+                        name="email"
+                        label={'Email'}
+                        placeholder="Email (optional) - ईमेल (वैकल्पिक)"
+                    />
+
                     <StateDisctrict formData={formData} handleFormChanges={handleFormChanges} />
                     <div className="checkbox-wrapper">
                         <input
