@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IndianDistrict, IndianStates, Blocks } from '@/util/data/geographical-data'
 import Select from '@/components/forms/Select'
 function StateDisctrict(props) {
     const { handleFormChanges } = props
-    const [optionBlock, setOptionBlock] = useState(undefined)
     const [optionDistrict, setOptionDistrict] = useState(undefined)
+    const [optionBlock, setOptionBlock] = useState(undefined)
+    const formData = props.formData
+    useEffect(() => {
+        setOptionDistrict(IndianDistrict[formData.state])
+        setOptionBlock(Blocks[formData.district])
+    }, [])
     function changeState(event) {
         var StateSelected = event.target.value;
         setOptionDistrict(IndianDistrict[StateSelected])
@@ -21,10 +26,9 @@ function StateDisctrict(props) {
         handleFormChanges(event)
 
     }
-
     return (
         <>
-            <Select required name="state" label="Select a State" onChange={changeState} id="inputState">
+            <Select required value={formData.state} name="state" label="Select a State" onChange={changeState} id="inputState">
                 <option value="">Select a State - राज्य चुनें</option>
                 {
                     IndianStates.map((item, index) => {
@@ -37,12 +41,12 @@ function StateDisctrict(props) {
 
 
             {
-                props.formData.state === undefined || optionDistrict === undefined ?
+                formData.state === undefined || optionDistrict === undefined ?
                     <Select required disabled name="district" label="Select a District" id="inputDistrict">
                         <option value="">Select a State First</option>
 
                     </Select>
-                    : <Select required value={props.formData.state} onChange={districtChange} name="district" label="Select a District">
+                    : <Select required value={formData.district} onChange={districtChange} name="district" label="Select a District">
                         {
                             optionDistrict.map((item, i) => {
                                 return <option key={i} value={item}>{item}</option>
@@ -53,14 +57,14 @@ function StateDisctrict(props) {
 
 
             {
-                props.formData.district === undefined || optionBlock === undefined ?
+                formData.district === undefined || optionBlock === undefined ?
                     <Select disabled name="block"
                         id="inputBlocks"
                         label="Select a Block"
                     >
                         <option value="">Select District First</option>
                     </Select>
-                    : <Select onChange={handleFormChanges} required name="block"
+                    : <Select onChange={handleFormChanges} value={formData.block} required name="block"
 
                         label="Select a Block" id="inputBlocks">
                         {

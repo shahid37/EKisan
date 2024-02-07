@@ -1,13 +1,14 @@
 "use client"
 import FarmForm from '@/components/common/FarmDetailForm';
 import { AuthContext } from '@/providers/AuthProviser';
+import editFarmerProfile from '@/util/account/editFarmerProfile';
 import createFramerProfile from '@/util/create-profile/createFramerProfile';
 import fetchCategories from '@/util/product/fetchCategories';
 import fetchCrops from '@/util/product/fetchCrops';
 
 import { useContext, useEffect, useState } from 'react';
 
-const Farmer = () => {
+const EditFarmerProfile = () => {
     const { user } = useContext(AuthContext)
     const [crops, setCrops] = useState([]);
     const [categories, setCategories] = useState([])
@@ -25,7 +26,8 @@ const Farmer = () => {
     useEffect(() => {
         const fetchData = async () => {
             setCrops(await fetchCrops())
-            setCategories(await fetchCategories({}))
+            setCategories(await fetchCategories({}));
+            setFarms(user.farmerData.farms)
         }
         fetchData();
 
@@ -43,7 +45,7 @@ const Farmer = () => {
     }
     const handleFormSubmmit = (e) => {
         e.preventDefault();
-        createFramerProfile({ data: { farms: farms }, user: user })
+        editFarmerProfile({ data: { farms: farms }, user: user })
     }
     return (
         <div className="px-2 create-profile">
@@ -66,13 +68,8 @@ const Farmer = () => {
                         })
                     }
                     <button onClick={() => { setFarms([...farms, {}]) }} type='button' className="button">Add More</button>
-
-
-                    {/* <StateDisctrict formData={formData} handleFormChanges={handleFormChanges} /> */}
                     <br />
-                    <button type='submit' className="button">Create Profile</button>
-                    <br /><br />
-                    <div id="recaptcha-container"></div>
+                    <button type='submit' className="button">Submit</button>
 
                 </div>
             </form >
@@ -80,4 +77,4 @@ const Farmer = () => {
     )
 }
 
-export default Farmer
+export default EditFarmerProfile

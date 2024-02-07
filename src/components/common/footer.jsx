@@ -59,7 +59,7 @@ const Footer = () => {
                         <h5 className="text-xl uppercase">Contact</h5><br />
                         <p>Address: <a className='text-link-green  hover:text-main-green' href="https://goo.gl/maps/VnxLxPuLAGacZ6Lo9">Loknathpur, Dalsinghsarai-848114, Samastipur, Bihar</a></p>
 
-                        <p>Phone: <a className='text-link-green hover:text-main-green' href="tel:+919424824272"> +91 9424824272</a>
+                        <p>Phone: <a className='text-link-green hover:text-main-green' href="tel:+919131248957"> +91 9131248957</a>
                             <br />
                             Email: <a className='text-link-green hover:text-main-green' href="mailto:ekisandarshan@gmail.com">ekisandarshan@gmail.com</a></p>
                     </div>

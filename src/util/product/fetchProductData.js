@@ -11,7 +11,7 @@ const fetchProductData = (id) => {
             resolve(
                 {
                     ...snapVal,
-                    price: incGST(snapVal.price)
+                    price: incGST(snapVal)
                 }
             );
         }));

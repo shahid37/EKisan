@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { AuthContext } from '@/providers/AuthProviser';
 import SellerInfo from './tabs/SellerInfo';
+import PersonalInfoEdit from './tabs/PersonalInfoEdit';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +47,7 @@ export default function BasicTabs() {
 
   const tabs = [
     { name: "Orders", component: <> Orders</> },
-    { name: "Personal", component: <>Personal Detail</> },
+    { name: "Personal", component: <PersonalInfoEdit /> },
     { name: "Address", component: <>Address</> },
   ]
   return (

@@ -12,7 +12,7 @@ const fetchProducts = ({ sortType = "newest", limit = null, search = null }) => 
                 const currentItem = snapVal[id];
                 const newObj = {
                     ...currentItem,
-                    price: incGST(currentItem.price),
+                    price: incGST(currentItem),
                 };
                 rawItemsList.push({ ...newObj, id });
             }

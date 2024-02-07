@@ -1,20 +1,17 @@
 
 "use client"
 import { AuthContext } from '@/providers/AuthProviser';
-import createFramerProfile from '@/util/create-profile/createFramerProfile';
-import fetchCategories from '@/util/product/fetchCategories';
-import fetchCrops from '@/util/product/fetchCrops';
-import { Delete, Lock } from '@mui/icons-material';
+import { Lock } from '@mui/icons-material';
 import Link from "next/link";
-import Radio from '@mui/material/Radio';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
+import EditFarmerProfile from '@/components/account/tabs/SellerInfo/farmer/EditFarmerProfile';
 const Farmer = () => {
     const { user } = useContext(AuthContext)
 
     if (user.farmerData) {
         return (
-            <div className="create-profile">
-               
+            <div className="edit-profile">
+               <EditFarmerProfile />
             </div >
         )
     }

@@ -61,7 +61,7 @@ body {}
         background-color: #8B0202;
         border-color: #8B0202;
     }
-    &.button-green {
+    &.button-blue {
         background-color: #0080ff;
         border-color: #0080ff;
     }
@@ -457,7 +457,7 @@ h4.heading {
         padding: 10px 0;
         display: flex;
         justify-content: space-between;
-        align-items: start;
+        align-items: flex-start;
 
         .left {
             width: 60%;
@@ -646,7 +646,7 @@ h4.heading {
             .location {
                 display: flex;
                 align-items: center;
-                justify-content: start;
+                justify-content: flex-start;
 
                 svg {
                     color: $theme-color-light;
@@ -771,7 +771,7 @@ h4.heading {
     }
 }
 
-.create-profile {
+.create-profile, .edit-profile {
     .farm {
         .heading {
             font-size: 20px;

@@ -11,11 +11,11 @@ const page = () => {
           Your Store
         </h3>
         <div className="quick-access-btns">
-          <div className="button button-red">
+          <div className="button button-green">
             <Store />
             <h5>Your Products</h5>
           </div>
-          <div className="button button-green">
+          <div className="button button-red">
             <LocalShipping />
             <h5>Your Order</h5>
           </div>

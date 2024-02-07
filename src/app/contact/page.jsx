@@ -1,10 +1,17 @@
 "use client"
 import Layout from "@/components/common/Layout";
+import Input from "@/components/forms/Input";
+import submitContactData from "@/util/contact/submitContactForm";
 import { useState } from "react";
+import Swal from "sweetalert2"
 function Page() {
     const [formData, setFromData] = useState()
-    const submitContactForn = (e) => {
+    const submitContactForn = async (e) => {
         e.preventDefault()
+        var status = await submitContactData(formData)
+        if(status){
+            Swal.fire("Form submited successfully", "We will replay you soon", "success")
+        }
     }
 
     let name, value
@@ -21,59 +28,50 @@ function Page() {
             <div className="contact-us">
                 <form onSubmit={submitContactForn} className="p-2 form">
                     <h1 className="heading text-3xl text-center">Contact Us</h1>
-                    <div className="input-wrapper">
-                        <label htmlFor="name">Name</label>
-                        <input
-                            className="input-box"
-                            placeholder="Your Name"
-                            onChange={handleFormChanges}
-                            type="text"
-                            required
-                            name="name"
-                            id="name"
+                    <Input
+                        className="input-box"
+                        placeholder="Your Name"
+                        onChange={handleFormChanges}
+                        type="text"
+                        label={'Name'}
+                        required
+                        name="name"
+                        id="name"
 
-                        />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="mail">Email Id</label>
+                    />
+                    <Input
+                        className="input-box"
+                        placeholder="Your email ID (optional) - अपना ईमेल"
+                        onChange={handleFormChanges}
+                        label={'Email Id'}
+                        type="email"
+                        name="mail"
+                        id="mail"
+                    />
+                    <Input
+                        type="text"
+                        name="phone"
+                        pattern="[0-9]+"
+                        label={"Mobile Number"}
+                        onChange={handleFormChanges}
+                        maxlength="10"
+                        id="mobile"
+                        minlength="10"
+                        placeholder="Mobile no. - मोबाइल नंबर"
+                        className="input-box"
+                        required />
 
-                        <input
-                            className="input-box"
-                            placeholder="Your email ID (optional) - अपना ईमेल"
-                            onChange={handleFormChanges}
-                            type="email"
-                            name="mail"
-                            id="mail"
-                        />
-                    </div>
+                    <Input
+                        className="input-box"
+                        placeholder="Subject (optional) - संपर्क का विषय"
+                        onChange={handleFormChanges}
+                        type="text"
+                        label={"Subject"}
+                        name="subject"
+                        id="subject"
+                    />
                     <div className="input-wrapper">
-                        <label htmlFor="mobile">Mobile Number</label>
-                        <input
-                            type="text"
-                            name="phone"
-                            pattern="[0-9]+"
-                            onChange={handleFormChanges}
-                            maxlength="10"
-                            id="mobile"
-                            minlength="10"
-                            placeholder="Mobile no. - मोबाइल नंबर"
-                            className="input-box"
-                            required />
-                    </div>
-
-                    <div className="input-wrapper">
-                        <label htmlFor="subject">Subject</label>
-                        <input
-                            className="input-box"
-                            placeholder="Subject (optional) - संपर्क का विषय"
-                            onChange={handleFormChanges}
-                            type="text"
-                            name="subject"
-                            id="subject"
-                        />
-                    </div>
-                    <div className="input-wrapper">
-                        <label htmlFor="message">Message</label>
+                        <label htmlFor="message">Message <span className="text-red-600">*</span></label>
                         <textarea
                             className="input-box"
                             placeholder="Please describe your issue or message here Properly - विषय का विस्तार"
@@ -85,8 +83,10 @@ function Page() {
                             required
                         ></textarea>
                     </div>
-                    <input className="button"
-                        type="submit" value="Send" />
+                    <button className="button"
+                        type="submit" >
+                        Contact
+                    </button>
                 </form>
             </div>
         </Layout>
