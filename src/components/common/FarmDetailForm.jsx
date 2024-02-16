@@ -1,5 +1,5 @@
 import Select from '@/components/forms/Select';
-import Input from '@/components/forms/input';
+import Input from '@/components/forms/Input';
 import { Delete } from '@mui/icons-material';
 import Radio from '@mui/material/Radio';
 const FarmForm = ({ index, deleteFarm, handleFarmChange, categories, crops, farms }) => {

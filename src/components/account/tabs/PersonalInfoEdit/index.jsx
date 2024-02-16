@@ -1,6 +1,6 @@
 
 import StateDisctrict from '@/components/common/StateDistrict'
-import Input from '@/components/forms/input'
+import Input from '@/components/forms/Input'
 import { AuthContext } from '@/providers/AuthProviser'
 import updateUser from '@/util/user/updateUser'
 import { useContext, useEffect, useState } from 'react'

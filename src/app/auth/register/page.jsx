@@ -1,7 +1,7 @@
 "use client"
 import StateDisctrict from '@/components/common/StateDistrict'
 import Select from '@/components/forms/Select'
-import Input from '@/components/forms/input'
+import Input from '@/components/forms/Input'
 import { AuthContext } from '@/providers/AuthProviser'
 import registerUser from '@/util/user/registerUser'
 import { useContext, useState } from 'react'
