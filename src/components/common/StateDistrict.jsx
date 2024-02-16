@@ -12,7 +12,7 @@ function StateDisctrict(props) {
     }, [])
     function changeState(event) {
         var StateSelected = event.target.value;
-        setOptionDistrict(IndianDistrict[StateSelected])
+        setOptionDistrict(IndianDistrict[StateSelected].sort())
         if (StateSelected === "") {
             setOptionDistrict(undefined)
         }
@@ -22,7 +22,7 @@ function StateDisctrict(props) {
 
     const districtChange = (event) => {
         var district = event.target.value
-        setOptionBlock(Blocks[district])
+        setOptionBlock(Blocks[district].sort())
         handleFormChanges(event)
 
     }
@@ -31,7 +31,7 @@ function StateDisctrict(props) {
             <Select required value={formData.state} name="state" label="Select a State" onChange={changeState} id="inputState">
                 <option value="">Select a State - राज्य चुनें</option>
                 {
-                    IndianStates.map((item, index) => {
+                    IndianStates.sort().map((item, index) => {
                         return (
                             <option key={index} value={item}>{item}</option>
                         )
@@ -64,7 +64,7 @@ function StateDisctrict(props) {
                     >
                         <option value="">Select District First</option>
                     </Select>
-                    : <Select onChange={handleFormChanges} value={formData.block} required name="block"
+                    : <Select onChange={handleFormChanges} value={formData.block} name="block"
 
                         label="Select a Block" id="inputBlocks">
                         {

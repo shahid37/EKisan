@@ -21,7 +21,6 @@ const ProductPage = ({ params }) => {
     const getData = async () => {
       setProduct(await fetchProductData(params.productId))
       setProducts(await fetchProducts({}))
-
     }
     getData()
   }, [])
@@ -63,7 +62,7 @@ const ProductPage = ({ params }) => {
               <AccountCircleOutlinedIcon /> <Link href={`/seller/${slug(product.sellerName)}/${product.sellerUID}`}>{product.sellerName}</Link>
             </div>
             <div className="seller-type">
-              {product.sellerType === "farmer" ? <>🚜 Farmer</> : <>🏢 Comany/Organisation </>}
+              {product.userType === "farmer" ? <>🚜 Farmer</> : <>🏢 Comany/Organisation </>}
             </div>
           </div>
           <div className="description">

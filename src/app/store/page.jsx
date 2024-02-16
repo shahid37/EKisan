@@ -2,7 +2,7 @@
 import Layout from '@/components/common/Layout'
 import { Forum, LocalShipping, Notifications, Store } from '@mui/icons-material'
 import React from 'react'
-
+import Link from "next/link"
 const page = () => {
   return (
     <Layout>
@@ -11,10 +11,10 @@ const page = () => {
           Your Store
         </h3>
         <div className="quick-access-btns">
-          <div className="button button-green">
+          <Link className="button button-green" href="/store/products">
             <Store />
             <h5>Your Products</h5>
-          </div>
+          </Link>
           <div className="button button-red">
             <LocalShipping />
             <h5>Your Order</h5>

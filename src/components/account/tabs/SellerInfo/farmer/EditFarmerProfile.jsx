@@ -5,7 +5,7 @@ import editFarmerProfile from '@/util/account/editFarmerProfile';
 import createFramerProfile from '@/util/create-profile/createFramerProfile';
 import fetchCategories from '@/util/product/fetchCategories';
 import fetchCrops from '@/util/product/fetchCrops';
-
+import Swal from "sweetalert2"
 import { useContext, useEffect, useState } from 'react';
 
 const EditFarmerProfile = () => {
@@ -43,9 +43,11 @@ const EditFarmerProfile = () => {
             setFarms(farmsArr)
         }
     }
-    const handleFormSubmmit = (e) => {
+    const handleFormSubmmit = async (e) => {
         e.preventDefault();
-        editFarmerProfile({ data: { farms: farms }, user: user })
+        if (await editFarmerProfile({ data: { farms: farms }, user: user })) {
+            Swal.fire("Detail Update", "Your Profile has been updated", "success")
+        }
     }
     return (
         <div className="px-2 create-profile">

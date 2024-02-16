@@ -8,7 +8,7 @@ const SellerInfo = () => {
   if (user.userType == "farmer") {
     return <Farmer />
   }
-  else {
+  else if (user.userType == "corporate") {
     return <Corporate />
   }
 }

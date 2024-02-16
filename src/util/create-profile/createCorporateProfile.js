@@ -1,10 +1,10 @@
 import { database } from "@/firebase";
 import { ref, set } from "firebase/database";
-const createFramerProfile = ({ data, user }) => {
+const createCorporateProfile = ({ data, user }) => {
 
     return new Promise(resolve => {
         try {
-            const userRef = ref(database, `users/${user.uid}/farmerData`)
+            const userRef = ref(database, `users/${user.uid}/corporateData`)
             set(userRef, {
                 ...data, timeStamp: Date.now(), lastUpdate: Date.now()
             }).then(() => {
@@ -19,4 +19,4 @@ const createFramerProfile = ({ data, user }) => {
 
 }
 
-export default createFramerProfile
+export default createCorporateProfile

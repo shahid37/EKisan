@@ -1,7 +1,15 @@
 "use client"
 import sendOTP from '@/util/auth/sendOTP';
 import verifyOtp from '@/util/auth/verifyOTP';
+import { useState } from 'react';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 export default function Login() {
+  const [authData, setAuthData] = useState({
+    phone: "",
+    otp: "",
+  })
+  const [loading, setLoading] = useState(false)
   const toggleScreen = () => {
     const box = document.querySelector(".login-box")
     const phoneBox = document.querySelector(".login-box .phone")
@@ -14,39 +22,57 @@ export default function Login() {
       box.scrollTo(0, 0);
     }
   }
-  const handleOTP = async () => {
-    var response = await sendOTP("9876543210");
+  let name, value;
+  const handleChnage = (event) => {
+    name = event.target.name;
+    value = event.target.value;
+    setAuthData({ ...authData, [name]: value });
+  }
+
+  const handleOTP = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    var response = await sendOTP(authData.phone);
     if (response == true) {
       toggleScreen();
+      setLoading(false)
     }
   }
-  const handleVerification = () => {
-    verifyOtp("555555")
+  const handleVerification = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    var status = await verifyOtp(authData.otp, setLoading)
   }
   return (
 
     <div className="login-page">
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <div className="login-box">
-        <div className="phone">
+        <form onSubmit={handleOTP} className="phone">
           <h3 className="heading">Login</h3>
-          <div className="input-box">
+          <div className="input-wrapper">
             <label htmlFor="">Enter phone number</label>
-            <input type="number" placeholder='eg: 97XXXXXXXX' />
+            <input required name='phone' onChange={handleChnage} type="number" placeholder='eg: 97XXXXXXXX' />
           </div>
-          <button onClick={handleOTP} className="button">
+          <button className="button">
             Next
           </button>
-        </div>
-        <div className="otp">
+        </form>
+        <form onSubmit={handleVerification} className="otp">
           <h3 className="heading">Verify</h3>
-          <div className="input-box">
-            <label htmlFor="">An OTP has sent to +91XXXXX5342 <span onClick={toggleScreen} className='link'>Change</span></label>
-            <input type="number" placeholder='eg: 97XXXXXXXX' />
+          <div className="input-wrapper">
+            <label htmlFor="">An OTP has sent to +91{authData.phone} <span onClick={toggleScreen} className='link'>Change</span></label>
+            <input min={111111} max={999999} required name="otp" onChange={handleChnage} type="number" placeholder='XXXXXX' />
           </div>
-          <button onClick={handleVerification} className="button">
+          <button className="button">
             Next
           </button>
-        </div>
+        </form>
       </div>
       <div id="recaptcha-container"></div>
     </div>

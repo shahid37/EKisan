@@ -2,12 +2,34 @@
 import { useContext } from "react";
 import Layout from "../common/Layout";
 import { AuthContext } from "@/providers/AuthProviser";
-const AuthGuard = ({ children, allowAuth = true, allowRegistred = false, allowSeller = false }) => {
+const AuthGuard = ({ children, allowAuth = true, allowRegistred = false, allowSeller = false, farmerOnly = false, corporateOnly=false }) => {
     const { user } = useContext(AuthContext)
     if (user === undefined) { // loading
         return null
     } else {
         if (allowAuth && allowRegistred) { //registerd
+            if (farmerOnly) {
+                if (user.userType == "farmer") {
+                    return <Layout>
+                        {children}
+                    </Layout>
+                }
+                else {
+                    location.replace("/")
+                    return null
+                }
+            }
+            if (corporateOnly) {
+                if (user.userType == "corporate") {
+                    return <Layout>
+                        {children}
+                    </Layout>
+                }
+                else {
+                    location.replace("/")
+                    return null
+                }
+            }
             if (allowSeller) { //if seller
                 if (user?.farmerData || user?.corporateData) {
                     return <Layout>

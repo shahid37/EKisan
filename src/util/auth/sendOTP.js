@@ -1,8 +1,8 @@
 import { auth } from "@/firebase";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
-
+import Swal from "sweetalert2"
 const sendOTP = (number) => {
-    window.recaptchaVerifier = new RecaptchaVerifier(auth,'recaptcha-container', {
+    window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
         size: 'invisible',
         callback: (response) => {
             // reCAPTCHA solved, allow signInWithPhoneNumber.

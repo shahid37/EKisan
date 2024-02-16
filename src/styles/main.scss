@@ -51,20 +51,23 @@ body {}
     font-weight: bold;
     font-family: $rajdhani;
     font-size: 20px;
-    
+
     &.outlined {
         background-color: transparent;
         color: $theme-color-light;
         border: 1px solid $theme-color-light;
     }
+
     &.button-red {
         background-color: #8B0202;
         border-color: #8B0202;
     }
+
     &.button-blue {
         background-color: #0080ff;
         border-color: #0080ff;
     }
+
     &.button-orange {
         background-color: #E8A221;
         border-color: #E8A221;
@@ -238,12 +241,47 @@ h4.heading {
     }
 }
 
+.no-products {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .heading {
+        font-size: 27px;
+    }
+
+    p {
+        font-size: 18px;
+        font-family: $open-sans;
+    }
+
+    .icon {
+        height: 100px;
+        width: 100px;
+        background-color: $theme-color-light;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+
+        svg {
+            font-size: 60px;
+            color: #fff;
+
+        }
+    }
+}
+
 .product-card-wrap {
     display: flex;
     flex-wrap: wrap;
 }
 
-.product-card {
+.product-card,
+.cart-item {
     margin: 10px 0px;
     padding: 0 0;
     width: 50%;
@@ -280,7 +318,7 @@ h4.heading {
         padding-bottom: 50px;
 
         .name.heading {
-            font-size: 26px;
+            font-size: 22px;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -321,7 +359,8 @@ h4.heading {
             }
         }
 
-        .price-wrap {
+        .price-wrap,
+        .action-wrap {
             position: absolute;
             padding: 0 10px;
             margin-bottom: 5px;
@@ -771,7 +810,8 @@ h4.heading {
     }
 }
 
-.create-profile, .edit-profile {
+.create-profile,
+.edit-profile {
     .farm {
         .heading {
             font-size: 20px;
@@ -782,6 +822,84 @@ h4.heading {
 .cart {
     h3.heading {
         font-size: 25px;
+    }
+
+    .subtotal {
+        margin: 10px 0;
+        display: flex;
+        align-items: baseline;        
+        font-family: $open-sans;
+        font-size: 18px;
+        .heading{
+            font-size: 26px;
+            margin-left: 10px;
+        }
+    }
+
+    .cart-item {
+        width: 100%;
+
+        .card {
+            flex-direction: row;
+            align-items: unset;
+
+            a {
+                max-width: 40%;
+                aspect-ratio: 1/1;
+                min-height: 120%;
+                display: flex;
+
+                img {
+                    aspect-ratio: 1/1;
+                }
+            }
+
+            .detail {
+                padding: 10px;
+
+                .name.heading {
+                    justify-content: flex-start;
+                    line-height: normal;
+                }
+
+                .price-wrap {
+                    position: relative;
+                    display: block;
+                    padding: 0;
+                    margin: 10px 0;
+                    text-transform: capitalize;
+                }
+
+                .location {
+                    text-align: left;
+                    margin: 0;
+                }
+            }
+
+            .quantity-control {
+                display: flex;
+                margin-top: 10px;
+
+                .box {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0;
+                    margin: 0;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 4px;
+                }
+
+                .button {
+                    padding: 0;
+                    margin: 0;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 4px;
+                }
+            }
+        }
     }
 }
 
@@ -805,8 +923,43 @@ h4.heading {
             align-items: center;
             justify-content: center;
             border-radius: 10px;
+
             svg {
                 font-size: 50px;
+            }
+        }
+    }
+}
+
+.add-product {
+    .image-preview {
+        img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
+
+.listed-products {
+    .heading {
+        font-size: 20px;
+    }
+
+    .product-card {
+        .detail {
+            padding-bottom: 60px;
+        }
+
+        .location {
+            margin: 10px 0;
+        }
+
+        .action-wrap {
+            .button {
+                line-height: normal;
+                border-radius: 4px;
             }
         }
     }

@@ -38,17 +38,11 @@ const BottomBar = () => {
             <div className="name">Store</div>
           </div>
         }
-        <div className="item">
+        <div onClick={push("/cart")} className="item">
           <div className="icon">
             <ShoppingCart />
           </div>
           <div className="name">Cart</div>
-        </div>
-        <div onClick={push("/contact")} className="item">
-          <div className="icon">
-            <CallRoundedIcon />
-          </div>
-          <div className="name">Contact</div>
         </div>
       </div>
     </div>

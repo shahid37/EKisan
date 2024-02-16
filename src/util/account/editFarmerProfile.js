@@ -6,7 +6,7 @@ const editFarmerProfile = ({ data, user }) => {
         try {
             const userRef = ref(database, `users/${user.uid}/farmerData`)
             set(userRef, {
-                ...data, lastUpdate: Date.now(), timestamp: user.farmerData.timestamp
+                // ...data, lastUpdate: Date.now(), timestamp: user.farmerData.timeStamp
             }).then(() => {
                 resolve(true)
             })

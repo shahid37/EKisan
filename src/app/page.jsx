@@ -28,6 +28,9 @@ export default function Home() {
     <Layout>
       <SearchBar />
       <Feature />
+      <div className="box">
+        
+      </div>
       <div className="top-categories">
         <h4 className="heading">
           Top Categories

@@ -5,7 +5,7 @@ import submitContactData from "@/util/contact/submitContactForm";
 import { useState } from "react";
 import Swal from "sweetalert2"
 function Page() {
-    const [formData, setFromData] = useState()
+    const [formData, setFormData] = useState()
     const submitContactForn = async (e) => {
         e.preventDefault()
         var status = await submitContactData(formData)
@@ -18,7 +18,7 @@ function Page() {
     const handleFormChanges = (e) => {
         name = e.target.name
         value = e.target.value
-        setFromData({
+        setFormData({
             ...formData,
             [name]: value
         })

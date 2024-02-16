@@ -7,13 +7,17 @@ const fetchProductData = (id) => {
         const itemsRef = ref(database, `items/${id}`);
         onValue(itemsRef, (snapShot => {
             const snapVal = snapShot.val();
-
-            resolve(
-                {
-                    ...snapVal,
-                    price: incGST(snapVal)
-                }
-            );
+            if(snapVal){
+                resolve(
+                    {
+                        ...snapVal,
+                        price: incGST(snapVal)
+                    }
+                );
+            }
+            else{
+                resolve(undefined)
+            }
         }));
 
     });

@@ -1,58 +1,55 @@
 "use client"
+import CartItemCard from '@/components/cart/CartItemCard'
 import Layout from '@/components/common/Layout'
-import { AddShoppingCart, LocationOn, LocationOnOutlined } from '@mui/icons-material'
-import React from 'react'
-import Link from "next/link"
-import slug from '@/util/name/slug'
-import english from '@/util/name/english'
-import productLocation from '@/util/name/productLocation'
-const page = () => {
-    const item = {
+import { auth } from '@/firebase'
+import { AuthContext } from '@/providers/AuthProviser'
+import fetchProductData from '@/util/product/fetchProductData'
+import fetchUser from '@/util/user/fetchUser'
+import { useContext, useEffect, useState } from 'react'
+const Cart = () => {
+    const [cartItems, setCartItem] = useState(null)
+    useEffect(() => {
+        const fetchData = async () => {
+            const currentUser = auth.currentUser;
+            const user = await fetchUser({ user: currentUser });
 
-        block: "Sagar",
-        category: "Vegetables - सब्जियां",
-        certificateNo: "200",
-        district: "Sagar",
-        imgUrl: "https://firebasestorage.googleapis.com/v0/b/kisaandarshan-test.appspot.com/o/items%2F1658316258885.jpg?alt=media&token=140964f5-45ee-4c8c-be33-6ff86239ffa5",
-        name: "Drumstick - मोरंगा - मुनगा",
-        organic: "yes",
-        price: "100",
-        quantity: "200",
-        sellerName: "Sangeeta ",
-        sellerUID: "DHI55tOX6SQ0CpvqFr8q9i3oiom2",
-        state: "Madhya Pradesh",
-        timeStamp: 1658316258885,
-        unit: "kg",
-        userType: "farmer",
+            const userCartArr = await Promise.all(
+                Object.values(user?.cart).map(async (cartItem) => {
+                    const productDetail = await fetchProductData(cartItem.itemId);
+                    const item = { ...cartItem, ...productDetail };
+                    return item;
+                })
+            );
 
-    }
-    return (
-        <Layout>
-            <div className="cart px-4">
-                <h3 className="heading">Cart</h3>
-                <div className="cart-products">
-                    <div className="product-card">
-                        <div className='card'>
-                            <Link href={`/products/${slug(item.category)}/${slug(item.name)}/${item.id}`}>
-                                <img loading='lazy' src={item.imgUrl} alt={english(item.name)} />
-                            </Link>
-                            <div className="detail">
-                                <div className="name heading"><span className="name">{english(item.name)}</span> </div>
-                                <div className='unit'>{item.unit}</div>
-                                <div className="location"><LocationOn />{productLocation({ product: item })}</div>
-                                <div className="price-wrap">
-                                    <div className="price">	&#8377;{item.price.toLocaleString('en-IN')}</div>
-                                    <div className="add-btn">
-                                        <AddShoppingCart />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            console.log(userCartArr);
+            setCartItem(userCartArr);
+        };
+
+        fetchData();
+
+    }, [])
+    if (true) {
+        return (
+            <Layout>
+                <div className="cart px-2">
+                    <h3 className="heading">Your Cart</h3>
+                    <div className="subtotal">
+                        Subtotal <h4 className="heading">&#8377;92,300</h4>
+                    </div>
+                    <div className="cart-products">
+                        {
+                            cartItems?.map((item, index) => {
+
+                                return (
+                                    <CartItemCard key={index} item={item} />
+                                )
+                            })
+                        }
                     </div>
                 </div>
-            </div>
-        </Layout>
-    )
+            </Layout>
+        )
+    }
 }
 
-export default page
+export default Cart
