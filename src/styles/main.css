@@ -699,6 +699,9 @@ h4.heading {
 .cart h3.heading {
   font-size: 25px;
 }
+.cart .button {
+  width: 100%;
+}
 .cart .subtotal {
   margin: 10px 0;
   display: flex;
@@ -764,6 +767,9 @@ h4.heading {
   height: 30px;
   width: 30px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .store h3 {
@@ -808,6 +814,34 @@ h4.heading {
 .listed-products .product-card .action-wrap .button {
   line-height: normal;
   border-radius: 4px;
+}
+
+.checkout .item .name {
+  color: #54b178;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+.checkout .item .quantity {
+  font-size: 14px;
+}
+.checkout .price {
+  font-weight: bold;
+  color: #4a4a4a;
+}
+.checkout .subtotal {
+  color: #bc0000;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+.checkout .note p {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin-top: 14px;
+}
+.checkout .note p b {
+  color: #bc0000;
 }
 
 form label {

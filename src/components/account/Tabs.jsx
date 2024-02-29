@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { AuthContext } from '@/providers/AuthProviser';
 import SellerInfo from './tabs/SellerInfo';
 import PersonalInfoEdit from './tabs/PersonalInfoEdit';
+import Address from './tabs/Address';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,7 +49,7 @@ export default function BasicTabs() {
   const tabs = [
     { name: "Orders", component: <> Orders</> },
     { name: "Personal", component: <PersonalInfoEdit /> },
-    { name: "Address", component: <>Address</> },
+    { name: "Address", component: <><Address /></> },
   ]
   return (
     <Box sx={{ width: '100%' }}>

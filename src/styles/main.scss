@@ -824,13 +824,18 @@ h4.heading {
         font-size: 25px;
     }
 
+    .button {
+        width: 100%;
+    }
+
     .subtotal {
         margin: 10px 0;
         display: flex;
-        align-items: baseline;        
+        align-items: baseline;
         font-family: $open-sans;
         font-size: 18px;
-        .heading{
+
+        .heading {
             font-size: 26px;
             margin-left: 10px;
         }
@@ -897,6 +902,9 @@ h4.heading {
                     height: 30px;
                     width: 30px;
                     border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
         }
@@ -961,6 +969,47 @@ h4.heading {
                 line-height: normal;
                 border-radius: 4px;
             }
+        }
+    }
+}
+
+.checkout {
+
+    .item {
+        .name {
+            color: #54b178;
+            font-family: $rajdhani;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .quantity {
+            font-size: 14px;
+        }
+    }
+
+    .price {
+        font-weight: bold;
+        color: #4a4a4a;
+    }
+
+    .subtotal {
+        color: #bc0000;
+        font-family: $rajdhani;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .note {
+        p {
+            font-family: $open-sans;
+            font-size: 14px;
+            margin-top: 14px;
+
+            b {
+                color: #bc0000;
+            }
+
         }
     }
 }

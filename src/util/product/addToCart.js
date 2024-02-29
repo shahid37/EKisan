@@ -1,10 +1,20 @@
-import { database } from "@/firebase";
+import { auth, database } from "@/firebase";
 import { push, ref } from "firebase/database";
 import Swal from "sweetalert2";
+import fetchUser from "../user/fetchUser";
 
 const addToCart = ({ user, item }) => async () => {
+    if (user) {
+        addItemToCart({ user, item })
+    }
+    else {
+        addItemToCart({ user: await fetchUser({ user: auth.currentUser }), item })
+    }
+};
+
+const addItemToCart = async ({ user, item }) => {
     if (!isUserRegistered(user)) {
-        showToast({ icon: "error", title: "You are not logged in" });
+        showToast({ icon: "error", title: "You are not Registerd" });
         return;
     }
 
@@ -24,7 +34,7 @@ const addToCart = ({ user, item }) => async () => {
         })
         showToast({ icon: "success", title: "Product added to cart" });
     }
-};
+}
 const isDuplicate = (user, item) => {
     const itemId = item.id;
     const userCartData = user.cart || [];

@@ -1,22 +1,21 @@
 'use client';
-import Layout from '@/components/common/Layout'
-import fetchProductData from '@/util/product/fetchProductData';
+import Layout from '@/components/common/Layout';
+import ProductCard from '@/components/common/ProductCard';
+import filterProduct from '@/util/filter/filterProduct';
 import english from '@/util/name/english';
 import productLocation from '@/util/name/productLocation';
-import { Add, AddShoppingCartOutlined, LocationOn, LocationOnOutlined, Remove } from '@mui/icons-material';
-import { useRouter } from 'next/navigation';
-import Link from "next/link"
-import React, { useEffect, useState } from 'react'
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import filterProduct from '@/util/filter/filterProduct';
-import fetchProducts from '@/util/product/fetchProducts';
-import ProductCard from '@/components/common/ProductCard';
-import Head from 'next/head';
 import slug from '@/util/name/slug';
+import addToCart from '@/util/product/addToCart';
+import fetchProductData from '@/util/product/fetchProductData';
+import fetchProducts from '@/util/product/fetchProducts';
+import { AddShoppingCartOutlined, LocationOnOutlined } from '@mui/icons-material';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Head from 'next/head';
+import Link from "next/link";
+import { useEffect, useState } from 'react';
 const ProductPage = ({ params }) => {
   const [product, setProduct] = useState(null)
   const [products, setProducts] = useState([])
-  const location = useRouter()
   useEffect(() => {
     const getData = async () => {
       setProduct(await fetchProductData(params.productId))
@@ -49,7 +48,7 @@ const ProductPage = ({ params }) => {
               </div>
             </div>
             <div className="add-to-cart">
-              <div className="add-btn">
+              <div onClick={addToCart({ item: product})} className="add-btn">
                 <AddShoppingCartOutlined />
               </div>
             </div>
