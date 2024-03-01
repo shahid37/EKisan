@@ -5,7 +5,8 @@ import Link from "next/link"
 import slug from '@/util/name/slug'
 import english from '@/util/name/english'
 import productLocation from '@/util/name/productLocation'
-import { LocationOn } from '@mui/icons-material'
+import { LocationOn, ShoppingBag } from '@mui/icons-material'
+import NoProducts from '@/components/store/NoProducts'
 const Orders = () => {
     const { user } = useContext(AuthContext)
     const [orders, setOrders] = useState(undefined)
@@ -22,13 +23,25 @@ const Orders = () => {
         "dispatched": "Order is Dispatched",
         "delivered": "Order has been Delivered"
     }
+    console.log(orders)
     if (!orders) {
         return null
+    }
+    else if (!orders?.length) {
+        return <>
+            <NoProducts
+                btnText='Continue Shopping'
+                href='/'
+                description='Start exploring our products and add items to your cart '
+                title="Looks like you haven't placed any orders yet."
+                icon={<ShoppingBag />}
+            />
+        </>
     }
     else {
         return (
             <div className="orders">
-                <div>Orders</div>
+                <h3 className='heading'>Orders</h3>
                 <div>
                     <div className="order">
                         {
@@ -42,7 +55,7 @@ const Orders = () => {
                                             <div className="name heading"><span className="name">{english(item.name)}</span> </div>
                                             <div className='price-wrap'><span className="price">&#8377;{item.price.toLocaleString('en-IN')}</span> / {item.unit}</div>
                                             <div className="location"><LocationOn />{productLocation({ product: item })}</div>
-                                            <div className="status"><b>Status</b>: {item.orderStatus}</div>
+                                            <div className="status"><b>Status</b>: {statusCode[item.orderStatus]}</div>
                                         </div>
                                     </div>
                                 </div>

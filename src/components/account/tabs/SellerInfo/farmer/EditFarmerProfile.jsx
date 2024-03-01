@@ -10,6 +10,7 @@ import { useContext, useEffect, useState } from 'react';
 
 const EditFarmerProfile = () => {
     const { user } = useContext(AuthContext)
+
     const [crops, setCrops] = useState([]);
     const [categories, setCategories] = useState([])
     const [farms, setFarms] = useState([{
@@ -55,7 +56,7 @@ const EditFarmerProfile = () => {
 
                 <div id="wrapper">
                     {
-                        farms.map((item, index) => {
+                        farms?.map((item, index) => {
                             return (
                                 <FarmForm
                                     deleteFarm={deleteFarm}

@@ -16,7 +16,7 @@ const fetchOrders = ({ user }) => {
             resolve(orders)
         }
         else {
-            resolve(null)
+            resolve([])
         }
     })
 }

@@ -15,18 +15,18 @@ const page = () => {
             <Store />
             <h5>Your Products</h5>
           </Link>
-          <div className="button button-red">
+          <Link className="button button-red" href="/store/orders">
             <LocalShipping />
             <h5>Your Order</h5>
-          </div>
-          <div className="button button-blue">
+          </Link>
+          <Link className="button button-blue" href="/notifications">
             <Notifications />
             <h5>Notifications</h5>
-          </div>
-          <div className="button button-orange">
+          </Link>
+          <Link className="button button-orange" href="/store/talk-to-expert">
             <Forum />
             <h5>Talk to Expert</h5>
-          </div>
+          </Link>
         </div>
       </div>
     </Layout>

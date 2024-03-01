@@ -14,13 +14,18 @@ import Swal from "sweetalert2"
 const CartItemCard = ({ item, setGrandTotal, setCartItem }) => {
     const { user } = useContext(AuthContext)
     const [currentQuantity, setCurrentQuantity] = useState(parseInt(item.quantity))
-    const cartRef = ref(database, `users/${user.uid}/cart/${item.cartId}`)
+    const cartRef = ref(database, `users/${user?.uid}/cart/${item.cartId}`)
     const updateSubtotal = async () => {
         const newUser = await fetchUser({ user })
         const userCart = await fetchCart({ user: newUser })
-        setCartItem(userCart.userCartArr)
-        setGrandTotal(userCart.total)
-        
+        if (userCart) {
+            setGrandTotal(userCart.total)
+            setCartItem(userCart.userCartArr);
+        }
+        else {
+            setCartItem(null)
+        }
+
     }
     const increase = async () => {
         setCurrentQuantity(currentQuantity + 1)
@@ -70,13 +75,15 @@ const CartItemCard = ({ item, setGrandTotal, setCartItem }) => {
                             <button onClick={decrease} className="button button-red">
                                 <Remove />
                             </button>
-
                         }
                         <div className="box">
                             {currentQuantity}
                         </div>
                         <button onClick={increase} className="button">
                             <Add />
+                        </button>
+                        <button onClick={deleteCartItem} className="delete-btn button button-red">
+                            <Delete />
                         </button>
                     </div>
                 </div>

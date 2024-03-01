@@ -59,9 +59,6 @@ export default function Home() {
           <h4 className="heading">
             Newly added
           </h4>
-          <a className="see-more">
-            See More
-          </a>
         </div>
         <div className="product-card-wrap">
           {

@@ -28,16 +28,16 @@ const Cart = () => {
         fetchData();
 
     }, [])
-    if (cartItems === undefined && !user) {
+    if (cartItems === undefined) {
         return "loading"
     }
     else if (cartItems === null) {
         return (
-            <div className="flex flex-col items-center justify-center h-screen">
+            <div className="flex flex-col items-center justify-center h-[80vh]">
                 <img className="w-64 h-auto mb-4" src="/images/placeholders/emptyCart.svg" alt="empty cart" />
                 <h3 className="text-lg font-semibold">No items in cart</h3>
                 <Link href="/">
-                    <button className="bg-gray-800 text-white px-4 py-2 mt-4 rounded">
+                    <button className="button rounded">
                         Continue Shopping <i className="fa fa-shopping-bag"></i>
                     </button>
                 </Link>

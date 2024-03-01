@@ -826,6 +826,12 @@ h4.heading {
   align-items: center;
   justify-content: center;
 }
+.cart .cart-item .card .quantity-control .delete-btn,
+.cart .order-item .card .quantity-control .delete-btn,
+.orders .cart-item .card .quantity-control .delete-btn,
+.orders .order-item .card .quantity-control .delete-btn {
+  margin-left: 5px;
+}
 
 .store h3 {
   font-size: 25px;
@@ -946,4 +952,40 @@ form .selection-wrapper {
 }
 form .selection-wrapper .selection-title {
   width: 50%;
+}
+
+.notifications .detail {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: "Open Sans", sans-serif;
+}
+.notifications .title {
+  font-weight: bold;
+  font-family: "Rajdhani", sans-serif;
+  margin: 0;
+}
+
+.notify-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+  border-bottom: 1px solid #54b178;
+}
+.notify-item svg {
+  font-size: 30px;
+}
+.notify-item button {
+  background-color: transparent;
+  color: #54b178;
+  padding: 0;
+  font-size: 16px;
+  border: none;
+  margin: 2px 0;
+}
+
+.notify-item i.fa {
+  font-size: 36px;
 }/*# sourceMappingURL=main.css.map */

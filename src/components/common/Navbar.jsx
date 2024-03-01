@@ -2,11 +2,13 @@ import React from 'react'
 import Image from "next/image"
 import TranslateIcon from '@mui/icons-material/Translate';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
+import { Logout } from '@mui/icons-material';
+import Link from 'next/link';
 const Navbar = () => {
     return (
         <div className="navbar">
             <div className="mobile">
-                <div className="menu-bar-icon">
+                <div className="menu-bar-icon hidden">
                     <MenuRoundedIcon />
                 </div>
                 <div className="logo">
@@ -14,10 +16,13 @@ const Navbar = () => {
                     eKisan Darshan
                 </div>
                 <div className="translate">
-                    <TranslateIcon />
+                    <TranslateIcon className='opacity-0' />
+                    <Link href="/logout">
+                        <Logout />
+                    </Link>
                 </div>
             </div>
-            
+
         </div>
     )
 }
