@@ -7,22 +7,28 @@ import slug from '@/util/name/slug';
 import fetchUser from '@/util/user/fetchUser';
 import { Add, Delete, Remove } from '@mui/icons-material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { ref, set } from 'firebase/database';
+import { ref, remove, set } from 'firebase/database';
 import Link from "next/link";
 import { useContext, useState } from 'react';
 import Swal from "sweetalert2"
-const CartItemCard = ({ item, setGrandTotal }) => {
+const CartItemCard = ({ item, setGrandTotal, setCartItem }) => {
     const { user } = useContext(AuthContext)
     const [currentQuantity, setCurrentQuantity] = useState(parseInt(item.quantity))
     const cartRef = ref(database, `users/${user.uid}/cart/${item.cartId}`)
     const updateSubtotal = async () => {
         const newUser = await fetchUser({ user })
         const userCart = await fetchCart({ user: newUser })
+        setCartItem(userCart.userCartArr)
         setGrandTotal(userCart.total)
+        
     }
     const increase = async () => {
         setCurrentQuantity(currentQuantity + 1)
         await set(cartRef, { itemId: item.itemId, quantity: currentQuantity + 1 })
+        updateSubtotal()
+    }
+    const deleteCartItem = () => {
+        remove(cartRef);
         updateSubtotal()
     }
     const decrease = async () => {
@@ -56,13 +62,16 @@ const CartItemCard = ({ item, setGrandTotal }) => {
                     <div className='price-wrap'><span className="price">&#8377;{item.price.toLocaleString('en-IN')}</span> / {item.unit}</div>
                     <div className="location"><LocationOnIcon />{productLocation({ product: item })}</div>
                     <div className="quantity-control">
-                        <button onClick={decrease} className="button button-red">
-                            {currentQuantity == 1 ?
+                        {currentQuantity == 1 ?
+                            <button onClick={deleteCartItem} className="button button-red">
                                 <Delete />
-                                :
+                            </button>
+                            :
+                            <button onClick={decrease} className="button button-red">
                                 <Remove />
-                            }
-                        </button>
+                            </button>
+
+                        }
                         <div className="box">
                             {currentQuantity}
                         </div>

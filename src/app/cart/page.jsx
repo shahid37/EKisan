@@ -2,26 +2,49 @@
 import CartItemCard from '@/components/cart/CartItemCard'
 import Layout from '@/components/common/Layout'
 import { auth } from '@/firebase'
+import { AuthContext } from '@/providers/AuthProviser'
 import fetchCart from '@/util/cart/fetchCart'
 import fetchUser from '@/util/user/fetchUser'
 import Link from "next/link"
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 const Cart = () => {
-    const [cartItems, setCartItem] = useState(null)
+    const [cartItems, setCartItem] = useState(undefined)
     const [grandTotal, setGrandTotal] = useState(0)
+    const {user} = useContext(AuthContext)
     useEffect(() => {
         const fetchData = async () => {
             const currentUser = auth.currentUser;
             const user = await fetchUser({ user: currentUser });
             const userCart = await fetchCart({ user })
-            setGrandTotal(userCart.total)
-            setCartItem(userCart.userCartArr);
+            if (userCart) {
+                setGrandTotal(userCart.total)
+                setCartItem(userCart.userCartArr);
+            }
+            else {
+                setCartItem(null)
+            }
         };
 
         fetchData();
 
     }, [])
-    if (true) {
+    if (cartItems === undefined && !user) {
+        return "loading"
+    }
+    else if (cartItems === null) {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen">
+                <img className="w-64 h-auto mb-4" src="/images/placeholders/emptyCart.svg" alt="empty cart" />
+                <h3 className="text-lg font-semibold">No items in cart</h3>
+                <Link href="/">
+                    <button className="bg-gray-800 text-white px-4 py-2 mt-4 rounded">
+                        Continue Shopping <i className="fa fa-shopping-bag"></i>
+                    </button>
+                </Link>
+            </div>
+        )
+    }
+    else {
         return (
             <Layout>
                 <div className="cart px-2">
@@ -39,7 +62,7 @@ const Cart = () => {
                             cartItems?.map((item, index) => {
 
                                 return (
-                                    <CartItemCard setGrandTotal={setGrandTotal} key={index} item={item} />
+                                    <CartItemCard setCartItem={setCartItem} setGrandTotal={setGrandTotal} key={index} item={item} />
                                 )
                             })
                         }

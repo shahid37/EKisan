@@ -1,12 +1,14 @@
 "use client"
 import Address from '@/components/account/tabs/Address'
-import { auth } from '@/firebase'
+import { auth, database } from '@/firebase'
 import { AuthContext } from '@/providers/AuthProviser'
 import fetchCart from '@/util/cart/fetchCart'
 import english from '@/util/name/english'
 import fetchUser from '@/util/user/fetchUser'
-import { Edit } from '@mui/icons-material'
+import { Description, Edit } from '@mui/icons-material'
+import { push, ref, remove, set } from 'firebase/database'
 import { useContext, useEffect, useState } from 'react'
+import Swal from "sweetalert2"
 const Checkout = () => {
     const [cartItems, setCartItem] = useState([])
     const [grandTotal, setGrandTotal] = useState(0)
@@ -22,8 +24,92 @@ const Checkout = () => {
         };
 
         fetchData();
-
     }, [])
+    const handlePlaceOrder = () => {
+        const tempArr = []
+        console.log(tempArr)
+        const TIMESTAMP = Date.now()
+        cartItems.map((item) => {
+            const OrderData = {
+                item: {
+                    ...item,
+                    quantity: null,
+                    sellerId: null,
+                    cartId: null,
+                    id: null
+                },
+                quantity: item.quantity,
+                sellerId: item.sellerUID,
+                buyerId: user.uid,
+                timeStamp: TIMESTAMP,
+                orderStatus: "placed",
+            }
+            const OrderDataForSeller = {
+                buyerId: user.uid,
+                timeStamp: TIMESTAMP,
+                orderStatus: "placed",
+                quantity: item.quantity,
+                item: {
+                    ...item,
+                    quantity: null,
+                    sellerId: null,
+                    cartId: null,
+                    id: null
+                },
+            }
+            const OrderDataForBuyer = {
+                buyerId: user.uid,
+                timeStamp: TIMESTAMP,
+                orderStatus: "placed",
+                quantity: item.quantity,
+                item: {
+                    ...item,
+                    quantity: null,
+                    sellerId: null,
+                    cartId: null,
+                    id: null
+                },
+            }
+            const orderRef = ref(database, "orders")
+            push(orderRef, OrderData)
+                .then((snap) => {
+                    //seller part 
+                    const sellerOrderRef = ref(database, `users/${item.sellerUID}/store/received_orders/${snap.key}`)
+                    set(sellerOrderRef, OrderDataForSeller)
+                    const sellerNotificationRef = ref(database, `users/${item.sellerUID}/notifications`)
+                    push(sellerNotificationRef, {
+                        title: `You got an order for ${english(item.name)}`,
+                        description: "Check out the order detail. Click on view",
+                        timestamp: TIMESTAMP,
+                        type: "recived_order",
+                        buttonText: "View",
+                        buttonUrl: "/seller/orders"
+
+                    })
+                    //buyer part
+                    const buyerOrderRef = ref(database, `users/${user.uid}/orders/${snap.key}`)
+                    set(buyerOrderRef, OrderDataForBuyer)
+                    const buyerNotificationRef = ref(database, `users/${user.uid}/notifications`)
+                    push(buyerNotificationRef, {
+                        title: `Your order for ${english(item.name)} is placed`,
+                        description: "Check out the order detail. Click on view",
+                        timestamp: TIMESTAMP,
+                        type: "order_placed",
+                        buttonText: "View",
+                        buttonUrl: "/account/orders"
+                    })
+                })
+
+        })
+
+        remove(ref(database, `users/${user.uid}/cart`))
+            .then(() => {
+                Swal.fire("Order placed successfully", "", "success").then(() => {
+                    window.location.replace("/")
+                })
+            })
+
+    }
     if (!user) { return null }
     else {
         return (
@@ -64,7 +150,7 @@ const Checkout = () => {
                         Subtotal
                     </div>
                     <div className="subtotal col-span-2 text-right">
-                        &#8377;{grandTotal}
+                        &#8377;{grandTotal.toLocaleString("en-In")}
                     </div>
                 </div>
                 <div className="address">
@@ -86,6 +172,11 @@ const Checkout = () => {
                         <b>Note: </b>
                         Products will be delivered by sellers and the payment method (Cash/UPI/Cheque) will be decided after shipping.
                     </p>
+                </div>
+                <div className="place-order">
+                    <button onClick={handlePlaceOrder} className="button">
+                        Place Order
+                    </button>
                 </div>
             </div>
         )

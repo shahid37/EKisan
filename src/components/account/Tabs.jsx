@@ -8,6 +8,7 @@ import { AuthContext } from '@/providers/AuthProviser';
 import SellerInfo from './tabs/SellerInfo';
 import PersonalInfoEdit from './tabs/PersonalInfoEdit';
 import Address from './tabs/Address';
+import Orders from './tabs/Orders';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,7 +48,7 @@ export default function BasicTabs() {
   };
 
   const tabs = [
-    { name: "Orders", component: <> Orders</> },
+    { name: "Orders", component: <><Orders /></> },
     { name: "Personal", component: <PersonalInfoEdit /> },
     { name: "Address", component: <><Address /></> },
   ]
