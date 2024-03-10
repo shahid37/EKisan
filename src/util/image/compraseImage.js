@@ -7,7 +7,7 @@ const compraseImage = ({ productImage, TIMESTAMP }) => {
         const rawImageRef = ref(storage, `test/${TIMESTAMP}.${imgExtRemover(productImage.name)}`)
         await uploadBytes(rawImageRef, productImage)
         const uploadedImgUrl = await getDownloadURL(rawImageRef)
-        const apiResponse = await fetch("http://localhost:5000/api/comprase", {
+        const apiResponse = await fetch("https://tiny-lime-clownfish-kit.cyclic.app/api/comprase", {
             headers: {
                 "url": uploadedImgUrl,
                 "timestamp": TIMESTAMP,

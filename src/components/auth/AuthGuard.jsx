@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import Layout from "../common/Layout";
 import { AuthContext } from "@/providers/AuthProviser";
-const AuthGuard = ({ children, allowAuth = true, allowRegistred = false, allowSeller = false, farmerOnly = false, corporateOnly=false }) => {
+const AuthGuard = ({ children, allowAuth = true, allowRegistred = false, allowSeller = false, farmerOnly = false, corporateOnly = false }) => {
     const { user } = useContext(AuthContext)
     if (user === undefined) { // loading
         return null
@@ -41,7 +41,7 @@ const AuthGuard = ({ children, allowAuth = true, allowRegistred = false, allowSe
                     return null
                 }
             }
-            if (!user) { //if not loged in
+            if (user === null) { //if not loged in
                 location.replace("/auth/")
                 return null
             } else { // if loged in
@@ -60,11 +60,11 @@ const AuthGuard = ({ children, allowAuth = true, allowRegistred = false, allowSe
         }
         if (allowAuth && !allowRegistred) {
             if (!user?.name) {
-                location.replace("/auth")
-                return null
-                // return <Layout>
-                //     {children}
-                // </Layout>
+                // location.replace("/auth")
+                // return null
+                return <Layout>
+                    {children}
+                </Layout>
             }
             else {
                 return (

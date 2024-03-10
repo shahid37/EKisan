@@ -39,9 +39,9 @@ const ProductCard = ({ item = {
                         <button className="button button-blue">
                             <EditNoteIcon />
                         </button>
-                        <button className="button button-red">
+                        {/* <button className="button button-red">
                             <DeleteIcon />
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>

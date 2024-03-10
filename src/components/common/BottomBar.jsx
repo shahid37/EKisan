@@ -1,7 +1,7 @@
 import { AuthContext } from '@/providers/AuthProviser';
 import isRegisterdSeller from '@/util/seller/isRegisterdSeller';
 import { Notifications, Store } from '@mui/icons-material';
-import CallRoundedIcon from '@mui/icons-material/CallRounded';
+import Badge from '@mui/material/Badge';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
@@ -47,7 +47,9 @@ const BottomBar = () => {
         }
         <div onClick={push("/cart")} className="item">
           <div className="icon">
-            <ShoppingCart />
+            <Badge badgeContent={Object.keys(user?.cart || {}).length} color='error'>
+              <ShoppingCart />
+            </Badge>
           </div>
           <div className="name">Cart</div>
         </div>

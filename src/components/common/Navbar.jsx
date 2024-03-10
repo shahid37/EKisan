@@ -11,10 +11,10 @@ const Navbar = () => {
                 <div className="menu-bar-icon hidden">
                     <MenuRoundedIcon />
                 </div>
-                <div className="logo">
+                <Link className='logo' href={"/"}>
                     <Image loading='lazy' width={35} height={35} alt='eKisan Darshan Logo' src={"/images/logo-transparent.png"} />
                     eKisan Darshan
-                </div>
+                </Link>
                 <div className="translate">
                     <TranslateIcon className='opacity-0' />
                     <Link href="/logout">

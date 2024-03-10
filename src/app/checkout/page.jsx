@@ -26,8 +26,6 @@ const Checkout = () => {
         fetchData();
     }, [])
     const handlePlaceOrder = () => {
-        const tempArr = []
-        console.log(tempArr)
         const TIMESTAMP = Date.now()
         cartItems.map((item) => {
             const OrderData = {
@@ -54,7 +52,6 @@ const Checkout = () => {
                     quantity: null,
                     sellerId: null,
                     cartId: null,
-                    id: null
                 },
             }
             const OrderDataForBuyer = {
@@ -67,7 +64,6 @@ const Checkout = () => {
                     quantity: null,
                     sellerId: null,
                     cartId: null,
-                    id: null
                 },
             }
             const orderRef = ref(database, "orders")
@@ -81,10 +77,9 @@ const Checkout = () => {
                         title: `You got an order for ${english(item.name)}`,
                         description: "Check out the order detail. Click on view",
                         timestamp: TIMESTAMP,
-                        type: "recived_order",
+                        type: "order",
                         buttonText: "View",
-                        buttonUrl: "/seller/orders"
-
+                        buttonUrl: "/store/orders"
                     })
                     //buyer part
                     const buyerOrderRef = ref(database, `users/${user.uid}/orders/${snap.key}`)
@@ -94,7 +89,7 @@ const Checkout = () => {
                         title: `Your order for ${english(item.name)} is placed`,
                         description: "Check out the order detail. Click on view",
                         timestamp: TIMESTAMP,
-                        type: "order_placed",
+                        type: "order",
                         buttonText: "View",
                         buttonUrl: "/account/orders"
                     })

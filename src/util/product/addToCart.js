@@ -3,16 +3,21 @@ import { push, ref } from "firebase/database";
 import Swal from "sweetalert2";
 import fetchUser from "../user/fetchUser";
 
-const addToCart = ({ user, item }) => async () => {
+const addToCart = ({ user, item, setUser }) => async () => {
     if (user) {
-        addItemToCart({ user, item })
+        addItemToCart({ user, item, setUser })
     }
     else {
-        addItemToCart({ user: await fetchUser({ user: auth.currentUser }), item })
+        addItemToCart({ user: await fetchUser({ user: auth.currentUser }), item, setUser })
     }
 };
 
-const addItemToCart = async ({ user, item }) => {
+const addItemToCart = async ({ user, item, setUser }) => {
+    //if seller is trying to buy his own items
+    if (user.uid === item.sellerUID) {
+        showToast({ title: "You can buy your own Products", icon: "error" });
+        return;
+    }
     if (!isUserRegistered(user)) {
         showToast({ icon: "error", title: "You are not Registerd" });
         return;
@@ -32,6 +37,7 @@ const addItemToCart = async ({ user, item }) => {
             itemId: item.id,
             quantity: currentQuantity
         })
+        setUser ? setUser(await fetchUser({ user: auth.currentUser })) : location.replace("/cart")
         showToast({ icon: "success", title: "Product added to cart" });
     }
 }
@@ -61,7 +67,7 @@ const isProductAvailable = ({ user, item }) => {
 const showToast = ({ icon = "", title = "" }) => {
     const Toast = Swal.mixin({
         toast: true,
-        position: "bottom-left",
+        position: "top-right",
         showConfirmButton: false,
         timer: 4000,
         timerProgressBar: true,

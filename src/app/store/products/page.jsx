@@ -6,7 +6,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-
+import SearchBar from '@/components/common/SearchBar';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

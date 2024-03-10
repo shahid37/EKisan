@@ -72,8 +72,8 @@ const Corporate = () => {
 
         <Input
           onChange={handleFormChanges}
-          maxLength={14}
-          type="number" name="gst"
+          maxLength={15}
+          type="text" name="gst"
           id="gst"
           label={"GST IN"}
           placeholder="GST IN (optional)" />

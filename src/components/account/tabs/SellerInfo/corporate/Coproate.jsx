@@ -4,14 +4,14 @@ import { AuthContext } from '@/providers/AuthProviser';
 import { Lock } from '@mui/icons-material';
 import Link from "next/link";
 import { useContext } from 'react';
-import EditFarmerProfile from '@/components/account/tabs/SellerInfo/farmer/EditFarmerProfile';
+import EditCorporateProfile from './EditCorporateProfile';
 const Corporate = () => {
     const { user } = useContext(AuthContext)
 
     if (user.corporateData) {
         return (
             <div className="edit-profile">
-               {/* <EditFarmerProfile /> */}
+                <EditCorporateProfile />
             </div >
         )
     }

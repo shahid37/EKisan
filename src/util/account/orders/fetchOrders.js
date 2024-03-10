@@ -1,4 +1,5 @@
 
+
 const fetchOrders = ({ user }) => {
     return new Promise(async (resolve) => {
         if (user?.orders) {
@@ -9,7 +10,7 @@ const fetchOrders = ({ user }) => {
                         orderStatus: order.orderStatus,
                         quantity: order.quantity,
                         timeStamp: order.timeStamp,
-
+                        itemId: order.item.id
                     }
                 })
             )
@@ -22,3 +23,4 @@ const fetchOrders = ({ user }) => {
 }
 
 export default fetchOrders
+

@@ -15,7 +15,6 @@ const fetchCart = ({ user }) => {
                         return item;
                     })
                 )
-                console.log(userCartArr, typeof userCartArr)
                 resolve({ userCartArr, total })
             }
             else{

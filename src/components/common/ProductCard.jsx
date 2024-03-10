@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useContext } from 'react';
 
 const ProductCard = ({ item }) => {
-    const { user } = useContext(AuthContext)
+    const { user, setUser } = useContext(AuthContext)
     return (
         <div className="product-card">
             <div className='card'>
@@ -22,7 +22,7 @@ const ProductCard = ({ item }) => {
                     <div className="location"><LocationOnIcon />{productLocation({ product: item })}</div>
                     <div className="price-wrap">
                         <div className="price">	&#8377;{item.price.toLocaleString('en-IN')}</div>
-                        <div className="add-btn" onClick={addToCart({ user: user, item: item })}>
+                        <div className="add-btn" onClick={addToCart({ user: user, item: item, setUser })}>
                             <AddShoppingCartIcon />
                         </div>
                     </div>

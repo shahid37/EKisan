@@ -7,6 +7,7 @@ import english from '@/util/name/english'
 import productLocation from '@/util/name/productLocation'
 import { LocationOn, ShoppingBag } from '@mui/icons-material'
 import NoProducts from '@/components/store/NoProducts'
+import orderStatusCode from '@/util/common/orderStatusCode'
 const Orders = () => {
     const { user } = useContext(AuthContext)
     const [orders, setOrders] = useState(undefined)
@@ -17,13 +18,6 @@ const Orders = () => {
         }
         fetchData();
     }, [])
-    const statusCode = {
-        "placed": "Order is Placed",
-        "cancled": "Order is cancled",
-        "dispatched": "Order is Dispatched",
-        "delivered": "Order has been Delivered"
-    }
-    console.log(orders)
     if (!orders) {
         return null
     }
@@ -48,14 +42,14 @@ const Orders = () => {
                             orders.map((item, index) => {
                                 return <div key={index} className="order-item">
                                     <div className='card'>
-                                        <Link href={`/products/${slug(item.category)}/${slug(item.name)}/${item.id}`}>
+                                        <Link href={`/products/${slug(item.category)}/${slug(item.name)}/${item.itemId}`}>
                                             <img loading='lazy' src={item.imgUrl} alt={english(item.name)} />
                                         </Link>
                                         <div className="detail">
                                             <div className="name heading"><span className="name">{english(item.name)}</span> </div>
                                             <div className='price-wrap'><span className="price">&#8377;{item.price.toLocaleString('en-IN')}</span> / {item.unit}</div>
                                             <div className="location"><LocationOn />{productLocation({ product: item })}</div>
-                                            <div className="status"><b>Status</b>: {statusCode[item.orderStatus]}</div>
+                                            <div className="status"><b>Status</b>: {orderStatusCode[item.orderStatus]}</div>
                                         </div>
                                     </div>
                                 </div>

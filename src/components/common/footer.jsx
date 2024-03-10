@@ -7,19 +7,19 @@ const Footer = () => {
     const quickLinks = [
         {
             label: "Home",
-            href: "#"
+            href: "/"
         },
         {
-            label: "Profile",
-            href: "#"
+            label: "Account",
+            href: "/account"
         },
         {
             label: "Cart",
-            href: "#"
+            href: "/cart"
         },
         {
-            label: "About Us",
-            href: "#"
+            label: "Contact Us",
+            href: "/contact"
         }
     ];
 

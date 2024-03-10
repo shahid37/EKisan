@@ -972,6 +972,7 @@ h4.heading {
         }
 
         .action-wrap {
+            justify-content: center;
             .button {
                 line-height: normal;
                 border-radius: 4px;
@@ -1089,6 +1090,8 @@ form {
 }
 
 .notifications {
+    height: 80vh;
+
     .detail {
         padding: 0;
         margin: 0;
@@ -1108,12 +1111,31 @@ form {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0px;
+    padding: 20px 0px;
     border-bottom: 1px solid $theme-color-light;
-    svg{
-        font-size:30px;
+
+
+    .right {
+        position: relative;
+
+        svg {
+            font-size: 30px;
+        }
+
+        .time {
+            position: absolute;
+            top: -22px;
+            right: 0;
+            font-family: $open-sans;
+            color: #000000a9;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
     }
-    button{
+
+
+    button {
         background-color: transparent;
         color: $theme-color-light;
         padding: 0;
@@ -1125,4 +1147,150 @@ form {
 
 .notify-item i.fa {
     font-size: 36px;
+}
+
+.talk-to-expert {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: calc(100vh - 60px);
+    width: 100%;
+    position: relative;
+
+    .chatbox {
+        width: 100vw;
+
+        .chat-logo-div {
+            display: flex;
+            align-items: center;
+            background-color: #f0f6f2;
+            font-family: $rajdhani;
+            font-weight: bold;
+            padding: 5px 10px;
+
+            img {
+                margin-right: 10px;
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .chat-sec {
+            padding: 0 10px;
+            max-height: calc(100% - 126px);
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            .dummy{
+                width: 100%;
+                height: 70px;
+            }
+            .box {
+                font-family: $open-sans;
+                max-width: 90%;
+                min-width: 50%;
+                color: #000;
+                margin: 10px 0;
+                padding: 5px 8px;
+                border-radius: 5px;
+                position: relative;
+                padding-bottom: 25px;
+
+                .time {
+                    position: absolute;
+                    color: #000000be;
+                    right: 4px;
+                    bottom: 2px;
+                }
+            }
+
+            .sender {
+                display: flex;
+                justify-content: flex-start;
+
+                .box {
+                    background-color: #54b17852;
+
+                }
+            }
+
+            .reciver {
+                display: flex;
+                justify-content: flex-end;
+
+                .box {
+                    background-color: #0000000e;
+
+                }
+            }
+        }
+
+    }
+
+    .chat-control {
+        background-color: #fff;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+
+        .image-preview {
+            position: relative;
+
+            .button {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+
+        .wrap {
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .upload-btn-wrapper {
+            position: absolute;
+            padding: 0 5px;
+            bottom: 15px;
+        }
+
+        #image-input {
+            display: none;
+        }
+
+        .input-box {
+            border-radius: 10px;
+            width: 90%;
+            background: #f0f6f2;
+            padding: 10px 9px;
+            margin-top: 5px;
+            font-size: 14px;
+            padding-left: 35px;
+            outline: 1px solid $theme-color-light;
+
+        }
+
+        button {
+            height: 35px;
+            width: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 0 0 5px;
+            padding: 0;
+
+            svg {
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+body:has(.talk-to-expert) {
+
+    .bottom-nav,
+    .footer {
+        display: none;
+    }
 }

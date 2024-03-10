@@ -65,10 +65,10 @@ const Feature = () => {
                     <p>
                         <b>eKisan Darshan</b> allows farmers and seller to sell their <b>{currentSlide.name}</b> direct to consumers and Manufacturers avoiding Middle Man with Zero Commission
                     </p>
-                    <Link href={"/"}>
+                    <Link href={"/contact"}>
                         <div className="explor">
                             <button style={{ color: currentSlide.color }}>
-                                Explore
+                                Contact
                             </button>
                         </div>
                     </Link>

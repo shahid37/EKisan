@@ -44,6 +44,10 @@ const Page = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (!productImage) {
+            Swal.fire("Add product image", "You can add product image by clicking Add Product Image button", "info")
+            return
+        }
         setLoading(true)
         await sendItemToVerification({ user: user, itemData: formValue, productImage: productImage })
         setLoading(false)
@@ -116,6 +120,9 @@ const Page = () => {
                     disabled={formValue.category === undefined || formValue.category === "" ? true : false}
                     onChange={handleFormChanges}>
                     <option value="">Which Crop you grow</option>
+                    {user.userType === "corporate" &&
+                        <option value={"custom"}>Custom</option>
+                    }
                     {
                         crops.map((item, cropIndex) => {
                             if (item.category === formValue.category) {
@@ -125,10 +132,22 @@ const Page = () => {
                         })
                     }
                 </Select>
+                {
+                    formValue.name === "custom" &&
+                    <Input
+                        placeholder="Enter custom name"
+                        label="Item Name"
+                        name="custom_name"
+                        required
+                        type="text"
+                        onChange={handleFormChanges}
+                    />
+                }
                 <Input
                     placeholder="Enter the availabe quantity to sell"
                     label="Quantity"
                     name="quantity"
+                    required
                     type="text"
                     onChange={handleFormChanges}
                 />

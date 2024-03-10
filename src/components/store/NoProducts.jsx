@@ -16,9 +16,12 @@ const NoProducts = ({
             </div>
             <div className="heading">{title}</div>
             <p>{description}</p>
-            <Link href={href}>
-                <button className="button">{btnText}</button>
-            </Link>
+            {
+                btnText &&
+                <Link href={href}>
+                    <button className="button">{btnText}</button>
+                </Link>
+            }
         </div>
     )
 }

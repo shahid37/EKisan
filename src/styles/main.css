@@ -872,6 +872,9 @@ h4.heading {
 .listed-products .product-card .location {
   margin: 10px 0;
 }
+.listed-products .product-card .action-wrap {
+  justify-content: center;
+}
 .listed-products .product-card .action-wrap .button {
   line-height: normal;
   border-radius: 4px;
@@ -954,6 +957,9 @@ form .selection-wrapper .selection-title {
   width: 50%;
 }
 
+.notifications {
+  height: 80vh;
+}
 .notifications .detail {
   padding: 0;
   margin: 0;
@@ -971,11 +977,23 @@ form .selection-wrapper .selection-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
+  padding: 20px 0px;
   border-bottom: 1px solid #54b178;
 }
-.notify-item svg {
+.notify-item .right {
+  position: relative;
+}
+.notify-item .right svg {
   font-size: 30px;
+}
+.notify-item .right .time {
+  position: absolute;
+  top: -22px;
+  right: 0;
+  font-family: "Open Sans", sans-serif;
+  color: rgba(0, 0, 0, 0.662745098);
+  font-weight: bold;
+  font-size: 14px;
 }
 .notify-item button {
   background-color: transparent;
@@ -988,4 +1006,124 @@ form .selection-wrapper .selection-title {
 
 .notify-item i.fa {
   font-size: 36px;
+}
+
+.talk-to-expert {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: calc(100vh - 60px);
+  width: 100%;
+  position: relative;
+}
+.talk-to-expert .chatbox {
+  width: 100vw;
+}
+.talk-to-expert .chatbox .chat-logo-div {
+  display: flex;
+  align-items: center;
+  background-color: #f0f6f2;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+.talk-to-expert .chatbox .chat-logo-div img {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+.talk-to-expert .chatbox .chat-sec {
+  padding: 0 10px;
+  max-height: calc(100% - 126px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+.talk-to-expert .chatbox .chat-sec .dummy {
+  width: 100%;
+  height: 70px;
+}
+.talk-to-expert .chatbox .chat-sec .box {
+  font-family: "Open Sans", sans-serif;
+  max-width: 90%;
+  min-width: 50%;
+  color: #000;
+  margin: 10px 0;
+  padding: 5px 8px;
+  border-radius: 5px;
+  position: relative;
+  padding-bottom: 25px;
+}
+.talk-to-expert .chatbox .chat-sec .box .time {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.7450980392);
+  right: 4px;
+  bottom: 2px;
+}
+.talk-to-expert .chatbox .chat-sec .sender {
+  display: flex;
+  justify-content: flex-start;
+}
+.talk-to-expert .chatbox .chat-sec .sender .box {
+  background-color: rgba(84, 177, 120, 0.3215686275);
+}
+.talk-to-expert .chatbox .chat-sec .reciver {
+  display: flex;
+  justify-content: flex-end;
+}
+.talk-to-expert .chatbox .chat-sec .reciver .box {
+  background-color: rgba(0, 0, 0, 0.0549019608);
+}
+.talk-to-expert .chat-control {
+  background-color: #fff;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+}
+.talk-to-expert .chat-control .image-preview {
+  position: relative;
+}
+.talk-to-expert .chat-control .image-preview .button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.talk-to-expert .chat-control .wrap {
+  display: flex;
+  align-items: flex-end;
+}
+.talk-to-expert .chat-control .upload-btn-wrapper {
+  position: absolute;
+  padding: 0 5px;
+  bottom: 15px;
+}
+.talk-to-expert .chat-control #image-input {
+  display: none;
+}
+.talk-to-expert .chat-control .input-box {
+  border-radius: 10px;
+  width: 90%;
+  background: #f0f6f2;
+  padding: 10px 9px;
+  margin-top: 5px;
+  font-size: 14px;
+  padding-left: 35px;
+  outline: 1px solid #54b178;
+}
+.talk-to-expert .chat-control button {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 0 5px;
+  padding: 0;
+}
+.talk-to-expert .chat-control button svg {
+  font-size: 18px;
+}
+
+body:has(.talk-to-expert) .bottom-nav,
+body:has(.talk-to-expert) .footer {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

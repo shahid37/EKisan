@@ -26,7 +26,9 @@ function Auth() {
           <Link href="/auth/login">
             <button className="button w-[100%]">Login</button>
           </Link>
-          <button className="button w-[100%] outlined">Register</button>
+          <Link href="/auth/register">
+            <button className="button w-[100%] outlined">Register</button>
+          </Link>
 
         </div>
       </div>

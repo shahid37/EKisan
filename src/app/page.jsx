@@ -8,7 +8,6 @@ import english from '@/util/name/english';
 import slug from '@/util/name/slug';
 import fetchCategories from '@/util/product/fetchCategories';
 import fetchProducts from '@/util/product/fetchProducts';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import Link from "next/link";
 import { useEffect, useState } from 'react';
 export default function Home() {

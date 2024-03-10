@@ -1,6 +1,7 @@
 'use client';
 import Layout from '@/components/common/Layout';
 import ProductCard from '@/components/common/ProductCard';
+import { AuthContext } from '@/providers/AuthProviser';
 import filterProduct from '@/util/filter/filterProduct';
 import english from '@/util/name/english';
 import productLocation from '@/util/name/productLocation';
@@ -12,7 +13,7 @@ import { AddShoppingCartOutlined, LocationOnOutlined } from '@mui/icons-material
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Head from 'next/head';
 import Link from "next/link";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 const ProductPage = ({ params }) => {
   const [product, setProduct] = useState(null)
   const [products, setProducts] = useState([])

@@ -3,7 +3,7 @@ import Layout from '@/components/common/Layout';
 import ProductCard from '@/components/common/ProductCard';
 import filterProduct from '@/util/filter/filterProduct';
 import fetchProducts from '@/util/product/fetchProducts';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import SearchBar from '@/components/common/SearchBar';
 import { useEffect, useState } from 'react';
 export default function Page({ params }) {
 
@@ -18,14 +18,7 @@ export default function Page({ params }) {
     }, [])
     return (
         <Layout>
-            <div className="search-bar">
-                <input placeholder='Search Item, Seller, Category' type="text" />
-                <div className="search-btn">
-                    <button>
-                        <SearchRoundedIcon />
-                    </button>
-                </div>
-            </div>
+            <SearchBar />
             <div className="products">
                 <div className="head">
                     <h4 className="heading">

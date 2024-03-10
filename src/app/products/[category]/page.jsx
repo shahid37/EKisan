@@ -1,13 +1,12 @@
 "use client"
 import Layout from '@/components/common/Layout';
 import ProductCard from '@/components/common/ProductCard';
-import Feature from '@/components/home/Feature';
+import SearchBar from '@/components/common/SearchBar';
 import filterProduct from '@/util/filter/filterProduct';
 import english from '@/util/name/english';
 import slug from '@/util/name/slug';
 import fetchCategories from '@/util/product/fetchCategories';
 import fetchProducts from '@/util/product/fetchProducts';
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import Link from "next/link";
 import { useEffect, useState } from 'react';
 export default function Category({ params }) {
@@ -57,14 +56,7 @@ export default function Category({ params }) {
     }, [])
     return (
         <Layout>
-            <div className="search-bar">
-                <input placeholder='Search Item, Seller, Category' type="text" />
-                <div className="search-btn">
-                    <button>
-                        <SearchRoundedIcon />
-                    </button>
-                </div>
-            </div>
+            <SearchBar />
             <div className="top-categories">
                 <h4 className="heading">
                     Top Categories
