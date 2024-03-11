@@ -29,6 +29,17 @@ body {}
             }
         }
 
+        .button {
+            margin: 0px 0;
+            border-radius: 6px;
+            padding: 0px 10px;
+            font-size: 16px;
+            line-height: 32px;
+            background: transparent;
+            color: $theme-color-light;
+            border-width: 2px;
+        }
+
         .logo {
             display: flex;
             align-items: center;
@@ -973,6 +984,7 @@ h4.heading {
 
         .action-wrap {
             justify-content: center;
+
             .button {
                 line-height: normal;
                 border-radius: 4px;
@@ -1180,10 +1192,12 @@ form {
             max-height: calc(100% - 126px);
             overflow-y: auto;
             scroll-behavior: smooth;
-            .dummy{
+
+            .dummy {
                 width: 100%;
                 height: 70px;
             }
+
             .box {
                 font-family: $open-sans;
                 max-width: 90%;
@@ -1293,4 +1307,8 @@ body:has(.talk-to-expert) {
     .footer {
         display: none;
     }
+}
+
+.swal2-container.swal2-center.swal2-backdrop-show {
+    z-index: 999999;
 }

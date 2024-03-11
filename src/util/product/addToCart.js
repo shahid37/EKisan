@@ -7,8 +7,12 @@ const addToCart = ({ user, item, setUser }) => async () => {
     if (user) {
         addItemToCart({ user, item, setUser })
     }
-    else {
+    else if (auth.currentUser) {
         addItemToCart({ user: await fetchUser({ user: auth.currentUser }), item, setUser })
+    }
+    else {
+        showToast({ icon: "error", title: "You are not logged in" });
+        return;
     }
 };
 

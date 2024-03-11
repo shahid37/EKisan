@@ -54,7 +54,7 @@ export default function Login() {
       </Backdrop>
       <div className="login-box">
         <form onSubmit={handleOTP} className="phone">
-          <h3 className="heading">Login</h3>
+          <h3 className="heading">Login / Sign Up</h3>
           <div className="input-wrapper">
             <label htmlFor="">Enter phone number</label>
             <input required name='phone' onChange={handleChnage} type="number" placeholder='eg: 97XXXXXXXX' />
@@ -67,7 +67,7 @@ export default function Login() {
           <h3 className="heading">Verify</h3>
           <div className="input-wrapper">
             <label htmlFor="">An OTP has sent to +91{authData.phone} <span onClick={toggleScreen} className='link'>Change</span></label>
-            <input min={111111} max={999999} required name="otp" onChange={handleChnage} type="number" placeholder='XXXXXX' />
+            <input maxLength={"6"} pattern="[0-9.]+" required name="otp" onChange={handleChnage} type="text" placeholder='XXXXXX' />
           </div>
           <button className="button">
             Next

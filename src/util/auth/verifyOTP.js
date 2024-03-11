@@ -17,6 +17,7 @@ const verifyOtp = (otp, setLoading) => {
             })
 
         }).catch((error) => {
+            setLoading(false)
             if (error.code === "auth/invalid-verification-code") {
                 Swal.fire("Invalid OTP", "Enter correct OTP and try again", 'error')
             }

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from "next/image"
 import TranslateIcon from '@mui/icons-material/Translate';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
-import { Logout } from '@mui/icons-material';
+import { Login, Logout } from '@mui/icons-material';
 import Link from 'next/link';
+import { AuthContext } from '@/providers/AuthProviser';
 const Navbar = () => {
+    const { user } = useContext(AuthContext)
     return (
         <div className="navbar">
             <div className="mobile">
@@ -17,9 +19,16 @@ const Navbar = () => {
                 </Link>
                 <div className="translate">
                     <TranslateIcon className='opacity-0' />
-                    <Link href="/logout">
-                        <Logout />
-                    </Link>
+                    {
+                        user ?
+                            <Link href="/logout">
+                                <Logout />
+                            </Link>
+                            :
+                            <Link href="/auth/login">
+                                <button className="button">Sign Up</button>
+                            </Link>
+                    }
                 </div>
             </div>
 
