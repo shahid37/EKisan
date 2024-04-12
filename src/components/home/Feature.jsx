@@ -53,31 +53,52 @@ const Feature = () => {
         }, 5000)
     }, [])
     return (
-        <div className="image-slider">
-            <div style={{ backgroundColor: currentSlide.color }} className="item">
-                <div className="left">
-                    <div className="img" style={{ backgroundImage: `url(${currentSlide.img})` }}>
-                        <img loading='lazy' src='/images/slider/fruit.png' />
+        <>
+            <div className="image-slider">
+                <div style={{ backgroundColor: currentSlide.color }} className="item">
+                    <div className="left">
+                        <div className="img" style={{ backgroundImage: `url(${currentSlide.img})` }}>
+                            <img loading='lazy' src='/images/slider/fruit.png' />
+                        </div>
+                    </div>
+                    <div className="right">
+                        <h4 className="title">Buy & Sell</h4>
+                        <p>
+                            <b>eKisan Darshan</b> allows farmers and seller to sell their <b>{currentSlide.name}</b> direct to consumers and Manufacturers avoiding Middle Man with Zero Commission
+                        </p>
+                        <Link href={"/contact"}>
+                            <div className="explor">
+                                <button style={{ color: currentSlide.color }}>
+                                    Contact
+                                </button>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="logo">
+                        <Image loading='lazy' alt='eKisan Darshan Logo' src='/images/ekisan-darshan-logo.jpeg' width={30} height={30} />
                     </div>
                 </div>
-                <div className="right">
-                    <h4 className="title">Buy & Sell</h4>
+            </div>
+            <div className="bulk-query">
+                <div className="item">
+
+                    <h4 className="title">Want to buy in bulk?</h4>
                     <p>
-                        <b>eKisan Darshan</b> allows farmers and seller to sell their <b>{currentSlide.name}</b> direct to consumers and Manufacturers avoiding Middle Man with Zero Commission
+                        Let us know about your requiremnet
                     </p>
-                    <Link href={"/contact"}>
-                        <div className="explor">
-                            <button style={{ color: currentSlide.color }}>
-                                Contact
+                    <Link href={"/bulk-query"}>
+                        <div className="explor flex justify-center w-full mt-2">
+                            <button style={{ color: '#8B0202' }}>
+                                Bulk Query
                             </button>
                         </div>
                     </Link>
-                </div>
-                <div className="logo">
-                    <Image loading='lazy' alt='eKisan Darshan Logo' src='/images/ekisan-darshan-logo.jpeg' width={30} height={30} />
-                </div>
-            </div>
-        </div>
+                    <div className="logo">
+                        <Image loading='lazy' alt='eKisan Darshan Logo' src='/images/ekisan-darshan-logo.jpeg' width={30} height={30} />
+                    </div>
+                </div >
+            </div >
+        </>
     )
 }
 

@@ -22,7 +22,7 @@ function StateDisctrict(props) {
 
     const districtChange = (event) => {
         var district = event.target.value
-        setOptionBlock(Blocks[district].sort())
+        setOptionBlock(Blocks[district]?.sort())
         handleFormChanges(event)
 
     }
@@ -55,24 +55,28 @@ function StateDisctrict(props) {
                     </Select>
             }
 
-
             {
-                formData.district === undefined || optionBlock === undefined ?
-                    <Select disabled name="block"
-                        id="inputBlocks"
-                        label="Select a Block"
-                    >
-                        <option value="">Select District First</option>
-                    </Select>
-                    : <Select onChange={handleFormChanges} value={formData.block} name="block"
+                !props.hideBlock && <>
 
-                        label="Select a Block" id="inputBlocks">
-                        {
-                            optionBlock.map((item, i) => {
-                                return <option key={i} value={item}>{item}</option>
-                            })
-                        }
-                    </Select>
+                    {
+                        formData.district === undefined || optionBlock === undefined ?
+                            <Select disabled name="block"
+                                id="inputBlocks"
+                                label="Select a Block"
+                            >
+                                <option value="">Select District First</option>
+                            </Select>
+                            : <Select onChange={handleFormChanges} value={formData.block} name="block"
+
+                                label="Select a Block" id="inputBlocks">
+                                {
+                                    optionBlock.map((item, i) => {
+                                        return <option key={i} value={item}>{item}</option>
+                                    })
+                                }
+                            </Select>
+                    }
+                </>
             }
 
         </>

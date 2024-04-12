@@ -6,7 +6,7 @@ import { useState } from "react";
 import Swal from "sweetalert2"
 function Page() {
     const [formData, setFormData] = useState()
-    const submitContactForn = async (e) => {
+    const submitContactForm = async (e) => {
         e.preventDefault()
         var status = await submitContactData(formData)
         if(status){
@@ -26,7 +26,7 @@ function Page() {
     return (
         <Layout>
             <div className="contact-us">
-                <form onSubmit={submitContactForn} className="p-2 form">
+                <form onSubmit={submitContactForm} className="p-2 form">
                     <h1 className="heading text-3xl text-center">Contact Us</h1>
                     <Input
                         className="input-box"
