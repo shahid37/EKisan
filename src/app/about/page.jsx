@@ -91,7 +91,7 @@ const page = () => {
                     <div className="wrapper">
                         <div className="team-card">
                             <div className="image">
-                                <img src="/images/about/dhiraj.jpg" alt="" />
+                                <Image src="/images/about/dhiraj.jpg" width={150} height={150} alt="" />
                             </div>
                             <div className="detail">
                                 <div className="name">

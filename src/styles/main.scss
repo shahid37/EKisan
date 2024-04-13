@@ -17,6 +17,72 @@ body {}
     top: 0;
     z-index: 999;
 
+    .backdrop {
+        width: 100vw;
+        height: 100vh;
+        background-color: #00000091;
+        position: fixed;
+        top: 0;
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .side-menu {
+        z-index: 9999;
+        position: fixed;
+        width: 300px;
+        height: 100vh;
+        top: 0;
+        transition: 0.4s;
+        background: #ffffff;
+        left: -100%;
+
+        &.active {
+            left: 0;
+
+        }
+
+        .user {
+            height: 60px;
+            background: $theme-color-light;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+
+            svg {
+                font-size: 24px;
+                margin-right: 10px;
+            }
+
+        }
+
+        ul {
+            li {
+                padding: 10px;
+                display: flex;
+                align-items: center;
+
+                a {
+                    width: 100%;
+                }
+
+                svg {
+                    min-width: 25px;
+                    margin-right: 10px;
+                }
+
+                img {
+                    margin-right: 10px;
+                    width: 25px;
+                }
+            }
+        }
+    }
+
     .mobile {
         display: flex;
         justify-content: space-between;
@@ -1460,6 +1526,7 @@ form {
             justify-content: center;
             align-items: center;
             margin-top: 20px;
+
             .team-card {
                 border-radius: 10px;
                 border: 2px solid $theme-color-light;
@@ -1468,10 +1535,12 @@ form {
                 width: 240px;
                 align-items: center;
                 flex-direction: column;
+
                 .image {
                     width: 150px;
                     height: 150px;
-                    img{
+
+                    img {
                         width: 100%;
                         height: 100%;
                         border-radius: 50%;
@@ -1482,6 +1551,7 @@ form {
                 .detail {
                     text-align: center;
                     margin-top: 15px;
+
                     .name {
                         font-family: $rajdhani;
                         font-weight: bold;

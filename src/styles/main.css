@@ -11,6 +11,58 @@
   top: 0;
   z-index: 999;
 }
+.navbar .backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.568627451);
+  position: fixed;
+  top: 0;
+  display: none;
+}
+.navbar .backdrop.active {
+  display: block;
+}
+.navbar .side-menu {
+  z-index: 9999;
+  position: fixed;
+  width: 300px;
+  height: 100vh;
+  top: 0;
+  transition: 0.4s;
+  background: #ffffff;
+  left: -100%;
+}
+.navbar .side-menu.active {
+  left: 0;
+}
+.navbar .side-menu .user {
+  height: 60px;
+  background: #54b178;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.navbar .side-menu .user svg {
+  font-size: 24px;
+  margin-right: 10px;
+}
+.navbar .side-menu ul li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+.navbar .side-menu ul li a {
+  width: 100%;
+}
+.navbar .side-menu ul li svg {
+  min-width: 25px;
+  margin-right: 10px;
+}
+.navbar .side-menu ul li img {
+  margin-right: 10px;
+  width: 25px;
+}
 .navbar .mobile {
   display: flex;
   justify-content: space-between;
