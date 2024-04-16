@@ -10,12 +10,11 @@ import { useContext, useEffect, useState } from 'react'
 const Cart = () => {
     const [cartItems, setCartItem] = useState(undefined)
     const [grandTotal, setGrandTotal] = useState(0)
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     useEffect(() => {
         const fetchData = async () => {
-            const currentUser = auth.currentUser;
-            const user = await fetchUser({ user: currentUser });
-            const userCart = await fetchCart({ user })
+            const userData = await fetchUser({ user: user });
+            const userCart = await fetchCart({ user: userData })
             if (userCart) {
                 setGrandTotal(userCart.total)
                 setCartItem(userCart.userCartArr);
@@ -28,6 +27,7 @@ const Cart = () => {
         fetchData();
 
     }, [])
+
     if (cartItems === undefined) {
         return "loading"
     }

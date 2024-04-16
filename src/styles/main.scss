@@ -1343,7 +1343,7 @@ form {
 
             .sender {
                 display: flex;
-                justify-content: flex-start;
+                justify-content: flex-end;
 
                 .box {
                     background-color: #54b17852;
@@ -1353,7 +1353,7 @@ form {
 
             .reciver {
                 display: flex;
-                justify-content: flex-end;
+                justify-content: flex-start;
 
                 .box {
                     background-color: #0000000e;

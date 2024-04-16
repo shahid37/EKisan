@@ -33,6 +33,10 @@ const TalkToExpert = () => {
                     setChats(chats)
 
                 }
+                if (document.querySelector(".chat-sec")) {
+                    const scrollHeight = document.querySelector(".chat-sec").scrollHeight + 10000;
+                    document.querySelector(".chat-sec").scrollTo(0, scrollHeight)
+                }
             })
         }
 
@@ -52,7 +56,8 @@ const TalkToExpert = () => {
                 message,
                 timestamp: Date.now(),
                 image: url,
-                sender: user.uid
+                sender: user.uid,
+                read: false
             })
             setLoading(false)
         }
@@ -60,7 +65,9 @@ const TalkToExpert = () => {
             push(dmRef, {
                 message,
                 timestamp: Date.now(),
-                sender: user.uid
+                sender: user.uid,
+                read: false
+
             })
         }
 

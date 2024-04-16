@@ -1172,14 +1172,14 @@ form .selection-wrapper .selection-title {
 }
 .talk-to-expert .chatbox .chat-sec .sender {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 .talk-to-expert .chatbox .chat-sec .sender .box {
   background-color: rgba(84, 177, 120, 0.3215686275);
 }
 .talk-to-expert .chatbox .chat-sec .reciver {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .talk-to-expert .chatbox .chat-sec .reciver .box {
   background-color: rgba(0, 0, 0, 0.0549019608);
