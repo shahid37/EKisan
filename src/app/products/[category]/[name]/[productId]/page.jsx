@@ -1,7 +1,6 @@
 'use client';
 import Layout from '@/components/common/Layout';
 import ProductCard from '@/components/common/ProductCard';
-import { AuthContext } from '@/providers/AuthProviser';
 import filterProduct from '@/util/filter/filterProduct';
 import english from '@/util/name/english';
 import productLocation from '@/util/name/productLocation';
@@ -9,11 +8,11 @@ import slug from '@/util/name/slug';
 import addToCart from '@/util/product/addToCart';
 import fetchProductData from '@/util/product/fetchProductData';
 import fetchProducts from '@/util/product/fetchProducts';
-import { AddShoppingCartOutlined, LocationOnOutlined } from '@mui/icons-material';
+import { AddShoppingCartOutlined, Facebook, LinkedIn, LocationOnOutlined, Twitter, WhatsApp } from '@mui/icons-material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Head from 'next/head';
 import Link from "next/link";
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 const ProductPage = ({ params }) => {
   const [product, setProduct] = useState(null)
   const [products, setProducts] = useState([])
@@ -49,7 +48,7 @@ const ProductPage = ({ params }) => {
               </div>
             </div>
             <div className="add-to-cart">
-              <div onClick={addToCart({ item: product})} className="add-btn">
+              <div onClick={addToCart({ item: product })} className="add-btn">
                 <AddShoppingCartOutlined />
               </div>
             </div>
@@ -67,6 +66,21 @@ const ProductPage = ({ params }) => {
           </div>
           <div className="description">
             {product.description}
+          </div>
+          <div className="share-btns flex justify-center gap-2">
+            <a target='_blank' href={`whatsapp://send?text=Buy *${english(product.name)}* from https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
+              <WhatsApp sx={{ fontSize: "30px", color: "#25D366" }} />
+            </a>
+            <a target='_blank' href={`https://www.facebook.com/sharer/sharer.php?u=https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
+              <Facebook sx={{ fontSize: "30px", color: "#3B5998" }} />
+            </a>
+
+            <a target='_blank' href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`)}&summary=Buy ${english(product.name)} from eKisanDarshan&source=@eKisanDarshan`}>
+              <LinkedIn sx={{ fontSize: "30px", color: "#0A66C2" }} />
+            </a>
+            <a target='_blank' href={`http://x.com/intent/tweet?text=Buy ${english(product.name)} from @eKisanDarshan &url=https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
+              <Twitter sx={{ fontSize: "30px", color: "#1DA1F2" }} />
+            </a>
           </div>
           <div className="releted-items">
             <h4 className="heading">

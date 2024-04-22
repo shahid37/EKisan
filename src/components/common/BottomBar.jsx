@@ -18,43 +18,43 @@ const BottomBar = () => {
   return (
     <div className="bottom-nav">
       <div className="wrap">
-        <div onClick={push("/")} className="item">
+        <button onClick={push("/")} className="item">
           <div className="icon">
             <HomeRoundedIcon />
           </div>
           <div className="name">Home</div>
-        </div>
-        <div onClick={push("/account")} className="item">
+        </button>
+        <button onClick={push("/account")} className="item">
           <div className="icon">
             <PersonIcon />
           </div>
           <div className="name">You</div>
-        </div>
+        </button>
         {
-          isRegisterdSeller(user) ? <div onClick={push("/store")} className="item">
+          isRegisterdSeller(user) ? <button onClick={push("/store")} className="item">
             <div className="icon">
               <Store />
             </div>
             <div className="name">Store</div>
-          </div>
+          </button>
             :
-            <div onClick={push("/notifications")} className="item">
+            <button onClick={push("/notifications")} className="item">
               <div className="icon">
                 <Notifications />
               </div>
               <div className="name">Updates</div>
-            </div>
+            </button>
         }
-        <div onClick={push("/cart")} className="item">
+        <button onClick={push("/cart")} className="item">
           <div className="icon">
             <Badge badgeContent={Object.keys(user?.cart || {}).length} color='error'>
               <ShoppingCart />
             </Badge>
           </div>
           <div className="name">Cart</div>
-        </div>
+        </button>
       </div>
-    </div>
+    </div >
   )
 }
 

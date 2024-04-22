@@ -5,40 +5,59 @@ import { useEffect, useState } from 'react';
 const Feature = () => {
     const [currentSlide, setCurrentSlide] = useState({
         color: "#8B0202",
-        name: "Fruit",
+        description: "Fruit",
         img: "/images/slider/fruit.png"
     })
     const slides = [
         {
             color: "#8B0202",
-            name: "Fruit",
+            description: "Buy or Sale all agricultural input & output material",
             img: "/images/slider/fruit.png"
         },
         {
             color: "#81B214",
-            name: "vegetables",
+            description: "Farmers & Agriculture Businesses open your online store",
             img: "/images/slider/vegetable.png"
         },
         {
             color: "#D98E5F",
-            name: "seeds",
+            description: "Connect with farmers directly",
             img: "/images/slider/seeds.png"
         },
         {
             color: "#E8A221",
-            name: "Grains",
+            description: "Agriculture commodities procurements made easy for food processors & bulk buyers",
             img: "/images/slider/wheet.png"
         },
         {
             color: "#67A037",
-            name: "Fertilizers",
+            description: "Brand building farmers & Business houses",
             img: "/images/slider/fertilizer.png"
         },
         {
             color: "#e84b16",
-            name: "Equipements",
+            description: "Localised market - Now search farmers and all agriculture material in your own region",
             img: "/images/slider/farm-equipments.png"
-        }
+        },
+        {
+            color: "#E8A221",
+            description: "Assisting farmers - Self marketing of their farm produce and machineries",
+            img: "/images/slider/wheet.png"
+        },
+        {
+            color: "#67A037",
+            description: "farmers display farming skills - farmers profile online available for open market",
+            img: "/images/slider/fertilizer.png"
+        },
+        {
+            color: "#e84b16",
+            description: "Agriculture market data analysis available for farmers & all - Predicts farm and market future seasonally"
+        },
+        {
+            color: "#D98E5F",
+            description: "Now farmers connect with agriculture experts through mobile for training and advisory services - on farm solutions",
+            img: "/images/slider/seeds.png"
+        },
     ]
     useEffect(() => {
         var current = 0
@@ -64,7 +83,7 @@ const Feature = () => {
                     <div className="right">
                         <h4 className="title">Buy & Sell</h4>
                         <p>
-                            <b>eKisan Darshan</b> allows farmers and seller to sell their <b>{currentSlide.name}</b> direct to consumers and Manufacturers avoiding Middle Man with Zero Commission
+                            {currentSlide.description}
                         </p>
                         <Link href={"/contact"}>
                             <div className="explor">
@@ -81,11 +100,7 @@ const Feature = () => {
             </div>
             <div className="bulk-query">
                 <div className="item">
-
                     <h4 className="title">Want to buy in bulk?</h4>
-                    <p>
-                        Let us know about your requiremnet
-                    </p>
                     <Link href={"/bulk-query"}>
                         <div className="explor flex justify-center w-full mt-2">
                             <button style={{ color: '#8B0202' }}>
