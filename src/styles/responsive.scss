@@ -1,17 +1,10 @@
-@media (min-width:560px) and (max-width: 700px) {
-    // .contact-us {
-    //     display: flex;
-    //     justify-content: center;
+@media (min-width:560px) and (max-width: 700px) {}
 
-    //     .form {
-    //         min-width: 700px;
-    //     }
-    // }
-}
 @media (min-width:700px) {
     .contact-us {
         display: flex;
         justify-content: center;
+
         .form {
             min-width: 700px;
         }
@@ -22,4 +15,59 @@
     .bottom-nav {
         display: none;
     }
+}
+
+@media (min-width:900px) {
+
+    .product-card,
+    .cart-item,
+    .order-item {
+        width: 20%;
+    }
+
+}
+
+@media (min-width:900px) {
+    .top-categories {
+        h4.heading {
+            text-align: center;
+        }
+
+        .wrap {
+            justify-content: center;
+
+            .item {
+                width: 50%;
+            }
+        }
+    }
+}
+
+@media (min-width:1200px) {
+    .about-us {
+        padding: 10px 20rem;
+
+        .our-team .wrapper {
+            flex-direction: row;
+            gap: 23px;
+
+        }
+    }
+
+    .product-card,
+    .cart-item,
+    .order-item {
+        width: 16.5%;
+    }
+
+}
+
+@media (min-width:1400px) {
+
+    .product-card,
+    .cart-item,
+    .order-item {
+        width: 12.5%;
+    }
+
 }

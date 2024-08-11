@@ -87,8 +87,6 @@ const page = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="wrapper">
                         <div className="team-card">
                             <div className="image">
                                 <Image src="/images/about/dhiraj.jpg" width={150} height={150} alt="" />
@@ -102,8 +100,6 @@ const page = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="wrapper">
                         <div className="team-card">
                             <div className="image">
                                 <img src="/images/logo-transparent.png" alt="" />

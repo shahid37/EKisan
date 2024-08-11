@@ -512,6 +512,11 @@ h4.heading {
                 font-size: 18px;
             }
 
+            span {
+                font-weight: normal;
+                font-size: 12px;
+            }
+
             .add-btn {
                 box-shadow: 0 0 10px 2px #54b17867;
                 background-color: $theme-color-light;
@@ -619,12 +624,23 @@ h4.heading {
     padding: 10px;
 
     .product-image {
+        position: relative;
 
         img {
             width: 100%;
             border-radius: 10px;
             aspect-ratio: 3/2;
             object-fit: cover;
+        }
+
+        .share-btns {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 2px 6px;
+            border-bottom-right-radius: 10px;
+
         }
     }
 
@@ -1528,6 +1544,7 @@ form {
             margin-top: 20px;
 
             .team-card {
+                margin-top: 10px;
                 border-radius: 10px;
                 border: 2px solid $theme-color-light;
                 padding: 20px;

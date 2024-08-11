@@ -462,6 +462,15 @@ h4.heading {
   font-weight: bold;
   font-size: 18px;
 }
+.product-card .detail .price-wrap span,
+.product-card .detail .action-wrap span,
+.cart-item .detail .price-wrap span,
+.cart-item .detail .action-wrap span,
+.order-item .detail .price-wrap span,
+.order-item .detail .action-wrap span {
+  font-weight: normal;
+  font-size: 12px;
+}
 .product-card .detail .price-wrap .add-btn,
 .product-card .detail .action-wrap .add-btn,
 .cart-item .detail .price-wrap .add-btn,
@@ -562,12 +571,23 @@ h4.heading {
 .product-page {
   padding: 10px;
 }
+.product-page .product-image {
+  position: relative;
+}
 .product-page .product-image img {
   width: 100%;
   border-radius: 10px;
   aspect-ratio: 3/2;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.product-page .product-image .share-btns {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 2px 6px;
+  border-bottom-right-radius: 10px;
 }
 .product-page .item-wrap {
   padding: 10px 0;
@@ -1316,6 +1336,7 @@ form .selection-wrapper .selection-title {
   margin-top: 20px;
 }
 .about-us .our-team .wrapper .team-card {
+  margin-top: 10px;
   border-radius: 10px;
   border: 2px solid #54b178;
   padding: 20px;

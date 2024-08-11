@@ -1,7 +1,7 @@
 import { ref, onValue } from 'firebase/database';
 import { database } from '@/firebase';
 import { incGST } from '../calc/gst';
-const fetchCategories = ({ sortType = "newest", limit = null, productList = null }) => {
+const fetchCategories = ({ sortType = "newest", limit = null, productList = null, user=undefined }) => {
     const itemsRef = ref(database, 'categories/');
 
     return new Promise(resolve => {
@@ -10,6 +10,9 @@ const fetchCategories = ({ sortType = "newest", limit = null, productList = null
             var rawItemsList = [];
             for (const id in snapVal) {
                 rawItemsList.push({ ...snapVal[id], id });
+            }
+            if(user){
+                if(user.userType=="farmer") rawItemsList = ["Farm Machinery - कृषि मशीनरी","Fertilizers & Pesticides - उर्वरक & कीटनाशक", "Irrigation Equipment - सिंचाई उपकरण", "Animal Husbandry - पशुपालन"]
             }
             if (sortType == "newest" && limit == null && productList == null) {
                 resolve(rawItemsList)

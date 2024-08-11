@@ -18,10 +18,9 @@ const ProductCard = ({ item }) => {
                 </Link>
                 <div className="detail">
                     <div className="name heading"><span className="name">{english(item.name)}</span> </div>
-                    <div className='unit'>{item.unit}</div>
                     <div className="location"><LocationOnIcon />{productLocation({ product: item })}</div>
                     <div className="price-wrap">
-                        <div className="price">	&#8377;{item.price.toLocaleString('en-IN')}</div>
+                        <div className="price">	&#8377;{Math.floor(item.price).toLocaleString('en-IN')}  <span>/{item.unit}</span> </div>
                         <div className="add-btn" onClick={addToCart({ user: user, item: item, setUser })}>
                             <AddShoppingCartIcon />
                         </div>

@@ -184,9 +184,6 @@ const Page = () => {
                     <option value="kg">per kg</option>
                     <option value="liter">per liter(L)</option>
                     <option value="quintal">per quintal(100 KG)</option>
-                    <option value="100grams">per 100grams</option>
-                    <option value="250grams">per 250grams</option>
-                    <option value="500grams">per 500grams</option>
                     <option value="dozen">per dozen(12 Pieces)</option>
                     <option value="piece">per piece</option>
                 </Select>

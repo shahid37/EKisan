@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 const Feature = () => {
     const [currentSlide, setCurrentSlide] = useState({
         color: "#8B0202",
-        description: "Fruit",
+        description: "Buy or Sale all agricultural input & output material",
         img: "/images/slider/fruit.png"
     })
     const slides = [
@@ -51,6 +51,7 @@ const Feature = () => {
         },
         {
             color: "#e84b16",
+            img: "/images/slider/farm-equipments.png",
             description: "Agriculture market data analysis available for farmers & all - Predicts farm and market future seasonally"
         },
         {

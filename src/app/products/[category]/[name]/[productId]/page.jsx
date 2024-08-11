@@ -8,7 +8,7 @@ import slug from '@/util/name/slug';
 import addToCart from '@/util/product/addToCart';
 import fetchProductData from '@/util/product/fetchProductData';
 import fetchProducts from '@/util/product/fetchProducts';
-import { AddShoppingCartOutlined, Facebook, LinkedIn, LocationOnOutlined, Twitter, WhatsApp } from '@mui/icons-material';
+import { AddShoppingCartOutlined, ColorLens, Facebook, Instagram, LinkedIn, LocationOnOutlined, Twitter, WhatsApp } from '@mui/icons-material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Head from 'next/head';
 import Link from "next/link";
@@ -23,6 +23,16 @@ const ProductPage = ({ params }) => {
     }
     getData()
   }, [])
+  const share = async () => {
+    if (navigator.share && navigator.canShare({ text: "" })) {
+        navigator.share({
+          text: `Buy ${english(product.name)} from https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`,
+        })
+    } else {
+      alert("Your browser don't support sharing")
+    }
+
+  }
   if (product) {
     return (
       <Layout>
@@ -36,6 +46,25 @@ const ProductPage = ({ params }) => {
         <div className="product-page">
           <div className="product-image">
             <img loading='lazy' src={product.imgUrl} alt="" />
+            <div className="share-btns flex gap-2">
+              <a target='_blank' href={`whatsapp://send?text=Buy *${english(product.name)}* from https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
+                <WhatsApp sx={{ fontSize: "26px", color: "#25D366" }} />
+              </a>
+              <a target='_blank' href={`https://www.facebook.com/sharer/sharer.php?u=https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
+                <Facebook sx={{ fontSize: "26px", color: "#3B5998" }} />
+              </a>
+
+              <a target='_blank' href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`)}&summary=Buy ${english(product.name)} from eKisanDarshan&source=@eKisanDarshan`}>
+                <LinkedIn sx={{ fontSize: "26px", color: "#0A66C2" }} />
+              </a>
+              <a target='_blank' href={`http://x.com/intent/tweet?text=Buy ${english(product.name)} from @eKisanDarshan &url=https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
+                <Twitter sx={{ fontSize: "26px", color: "#1DA1F2" }} />
+              </a>
+              <a onClick={share} href={`#`}>
+                <Instagram sx={{ fontSize: "26px", color: "#FCAF45" }} />
+              </a>
+
+            </div>
           </div>
           <div className="item-wrap">
             <div className='left'>
@@ -67,21 +96,7 @@ const ProductPage = ({ params }) => {
           <div className="description">
             {product.description}
           </div>
-          <div className="share-btns flex justify-center gap-2">
-            <a target='_blank' href={`whatsapp://send?text=Buy *${english(product.name)}* from https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
-              <WhatsApp sx={{ fontSize: "30px", color: "#25D366" }} />
-            </a>
-            <a target='_blank' href={`https://www.facebook.com/sharer/sharer.php?u=https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
-              <Facebook sx={{ fontSize: "30px", color: "#3B5998" }} />
-            </a>
 
-            <a target='_blank' href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`)}&summary=Buy ${english(product.name)} from eKisanDarshan&source=@eKisanDarshan`}>
-              <LinkedIn sx={{ fontSize: "30px", color: "#0A66C2" }} />
-            </a>
-            <a target='_blank' href={`http://x.com/intent/tweet?text=Buy ${english(product.name)} from @eKisanDarshan &url=https://test.ekisandarshan.in/products/${slug(product.category)}/${slug(product.name)}/${product.id}`}>
-              <Twitter sx={{ fontSize: "30px", color: "#1DA1F2" }} />
-            </a>
-          </div>
           <div className="releted-items">
             <h4 className="heading">
               Related Item
